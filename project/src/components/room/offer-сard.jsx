@@ -1,6 +1,8 @@
+// компонент «Карточка предложения»
 import React from 'react';
+import offerProp from './offer-prop'
 
-function Card() {
+function OfferArd({offer}) {
   return (
     <article className="cities__place-card place-card">
       <div className="place-card__mark">
@@ -39,4 +41,6 @@ function Card() {
   );
 }
 
-export default Card;
+
+
+export default OfferArd;
