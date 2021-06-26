@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from "prop-types";
+import offerProp from "./offer.prop";
 
 function Room() {
   return (
@@ -292,7 +294,9 @@ function Room() {
 }
 
 Room.propTypes = {
-  offer: offerProp,
-}
+  offer: PropTypes.arrayOf(
+    PropTypes.oneOfType([offerProp]).isRequired,
+  ),
+};
 
 export default Room;

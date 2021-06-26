@@ -6,7 +6,7 @@ const offers = [
     price: 120,
     bedrooms: 3,
     maxAdults: 4,
-    rating: 4.8,
+    rating: 4,
     city: [{
       location: [{
         latitude: 52.370216,
@@ -40,14 +40,14 @@ const offers = [
     price: 80,
     bedrooms: 3,
     maxAdults: 4,
-    rating: 4.8,
+    rating: 4,
     city: [{
       location: [{
         latitude: 48.8566,
         longitude: 2.3522,
         zoom: 10
       }],
-      name: "Paris ",
+      name: "Paris",
     }],
     location: {
       latitude: 48.8566,
@@ -108,7 +108,7 @@ const offers = [
     price: 180,
     bedrooms: 3,
     maxAdults: 4,
-    rating: 4.8,
+    rating: 4,
     city: [{
       location: [{
         latitude: 53.5511,

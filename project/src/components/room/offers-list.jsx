@@ -7,11 +7,11 @@ import OfferCard from "./offer-сard";
 function OffersList({offers}){
   return (
     <div className="cities__places-list places__list tabs__content">
-      {offers.map((offer) => {
+      {offers.map((offer) => (
         <OfferCard
           offer={offer}
         />
-      })}
+      ))}
     </div>
   );
 }
