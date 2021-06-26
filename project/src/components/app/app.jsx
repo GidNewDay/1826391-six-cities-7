@@ -3,17 +3,21 @@ import PropTypes from 'prop-types';
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import {AppRoute} from "../../const";
 import Home from '../home/home';
-import Room from "../offer/offer";
+import Room from "../room/room";
 import SignIn from "../login/login";
 import Favourites from "../favourites/favourites";
 import NotFound from "../notfound/notfound";
+import offerProp from "../room/offer.prop"
 
-function App({cardsAmount}) {
+function App(props) {
+  const {offers} = props;
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path={AppRoute.ROOT}>
-          <Home cardsAmount={cardsAmount}/>
+          <Home
+            offers={offers}
+          />
         </Route>
         <Route exact path={AppRoute.ROOM}>
           <Room/>
@@ -33,7 +37,9 @@ function App({cardsAmount}) {
 }
 
 App.propTypes = {
-  cardsAmount: PropTypes.number.isRequired,
+  offers: PropTypes.arrayOf(
+    PropTypes.oneOfType([offerProp]).isRequired,
+  )
 };
 
 export default App;

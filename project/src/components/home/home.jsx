@@ -1,9 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import Card from '../card/card';
+import OffersList from '../room/offers-list';
+import PropTypes from "prop-types";
+import offerProp from "../room/offer.prop";
 
-function Home({cardsAmount}) {
-  const cards = new Array(cardsAmount).fill(0);
+function Home({offers}) {
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -92,9 +92,9 @@ function Home({cardsAmount}) {
                   <li className="places__option" tabIndex="0">Top rated first</li>
                 </ul>
               </form>
-              <div className="cities__places-list places__list tabs__content">
-                {cards.map((_,i) => <Card key={i.toString()}/>)}
-              </div>
+                <OffersList
+                  offers={offers}
+                />
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>
@@ -107,7 +107,8 @@ function Home({cardsAmount}) {
 }
 
 Home.propTypes = {
-  cardsAmount: PropTypes.number.isRequired,
+  offers: PropTypes.arrayOf(
+    PropTypes.oneOfType([offerProp]).isRequired,
+  )
 };
-
 export default Home;
