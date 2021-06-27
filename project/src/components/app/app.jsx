@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import {AppRoute} from "../../const";
-import Home from '../home/home';
+import Main from '../main/main';
 import Room from "../room/room";
 import SignIn from "../login/login";
 import Favourites from "../favourites/favourites";
@@ -15,7 +15,7 @@ function App(props) {
     <BrowserRouter>
       <Switch>
         <Route exact path={AppRoute.ROOT}>
-          <Home
+          <Main
             offers={offers}
           />
         </Route>

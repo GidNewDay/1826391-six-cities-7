@@ -1,9 +1,10 @@
+// компонент «Главная страница»
 import React from 'react';
 import OffersList from '../room/offers-list';
 import PropTypes from "prop-types";
 import offerProp from "../room/offer.prop";
 
-function Home({offers}) {
+function Main({offers}) {
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -106,9 +107,9 @@ function Home({offers}) {
   );
 }
 
-Home.propTypes = {
+Main.propTypes = {
   offers: PropTypes.arrayOf(
     PropTypes.oneOfType([offerProp]).isRequired,
   )
 };
-export default Home;
+export default Main;
