@@ -6,7 +6,7 @@ const offers = [
     price: 120,
     bedrooms: 3,
     maxAdults: 4,
-    rating: 4,
+    rating: 5,
     city: [{
       location: [{
         latitude: 52.370216,
@@ -30,7 +30,7 @@ const offers = [
     }],
     previewImage: "img/apartment-small-03.jpg",
     images: ["img/room.jpg", "img/apartment-01.jpg", "img/apartment-02.jpg","img/apartment-03.jpg","img/studio-01.jpg"],
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
   },
   {
@@ -47,7 +47,7 @@ const offers = [
         longitude: 2.3522,
         zoom: 10
       }],
-      name: "Paris",
+      name: "Amsterdam",
     }],
     location: {
       latitude: 48.8566,
@@ -62,7 +62,7 @@ const offers = [
       isPro: true,
       name: "Max"
     }],
-    previewImage: "img/apartment-small-04.jpg",
+    previewImage: "img/room-small.jpg",
     images: ["img/apartment-02.jpg", "img/apartment-03.jpg"],
     isFavorite: true,
     isPremium: false,
@@ -132,7 +132,7 @@ const offers = [
     }],
     previewImage: "img/apartment-small-04.jpg",
     images: ["img/apartment-01.jpg", "img/apartment-04.jpg"],
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
   },
 ];
