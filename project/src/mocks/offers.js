@@ -29,18 +29,18 @@ const offers = [
       name: "Angelina"
     }],
     previewImage: "img/apartment-small-03.jpg",
-    images: ["img/room.jpg", "img/apartment-01.jpg", "img/apartment-02.jpg","img/apartment-03.jpg","img/studio-01.jpg"],
+    images: ["img/room.jpg", "img/studio-01.jpg", "img/apartment-01.jpg", "img/apartment-02.jpg","img/apartment-03.jpg","img/studio-01.jpg"],
     isFavorite: true,
     isPremium: true,
   },
   {
     id: 2,
     title: "Wood and stone place",
-    type: "Private room",
+    type: "Private offer",
     price: 80,
     bedrooms: 3,
     maxAdults: 4,
-    rating: 4,
+    rating: 4.8,
     city: [{
       location: [{
         latitude: 48.8566,
@@ -54,7 +54,7 @@ const offers = [
       longitude: 2.3522,
       zoom: 8
     },
-    description: "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Paris.",
+    description: "An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.",
     goods: ["Heating", "Kitchen", "Cable TV", "Coffee machine", "Dishwasher"],
     host: [{
       avatarUrl: "img/avatar-max.jpg",
@@ -63,7 +63,7 @@ const offers = [
       name: "Max"
     }],
     previewImage: "img/room-small.jpg",
-    images: ["img/apartment-02.jpg", "img/apartment-03.jpg"],
+    images: ["img/apartment-02.jpg", "img/apartment-03.jpg", "img/studio-01.jpg"],
     isFavorite: true,
     isPremium: false,
   },
@@ -73,7 +73,7 @@ const offers = [
     type: "Apartment",
     price: 132,
     bedrooms: 3,
-    maxAdults: 4,
+    maxAdults: 4.8,
     rating: 5,
     city: [{
       location: [{
@@ -93,11 +93,11 @@ const offers = [
     host: [{
       avatarUrl: "img/avatar-angelina.jpg",
       id: 3,
-      isPro: true,
+      isPro: false,
       name: "Angelina"
     }],
     previewImage: "img/apartment-small-03.jpg",
-    images: ["img/apartment-03.jpg", "img/apartment-04.jpg"],
+    images: ["img/apartment-03.jpg", "img/apartment-02.jpg"],
     isFavorite: false,
     isPremium: false,
   },
@@ -108,7 +108,7 @@ const offers = [
     price: 180,
     bedrooms: 3,
     maxAdults: 4,
-    rating: 4,
+    rating: 4.8,
     city: [{
       location: [{
         latitude: 53.5511,
@@ -127,11 +127,11 @@ const offers = [
     host: [{
       avatarUrl: "img/avatar-max.jpg",
       id: 3,
-      isPro: true,
+      isPro: false,
       name: "Max"
     }],
     previewImage: "img/apartment-small-04.jpg",
-    images: ["img/apartment-01.jpg", "img/apartment-04.jpg"],
+    images: ["img/studio-01.jpg", "img/apartment-01.jpg", "img/apartment-03.jpg"],
     isFavorite: true,
     isPremium: true,
   },

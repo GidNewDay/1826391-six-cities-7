@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import {AppRoute} from "../../const";
 import Main from '../main/main';
-import Room from "../room/room";
+import Room from "../offer/offer";
 import SignIn from "../login/login";
 import Favourites from "../favourites/favourites";
 import NotFound from "../notfound/notfound";
-import offerProp from "../room/offer.prop"
+import offerProp from "../offer/offer.prop"
 
 function App(props) {
-  const {offers} = props;
+  const {offers, reviews} = props;
   return (
     <BrowserRouter>
       <Switch>
@@ -19,8 +19,11 @@ function App(props) {
             offers={offers}
           />
         </Route>
-        <Route exact path={AppRoute.ROOM}>
-          <Room/>
+        <Route exact path={`${AppRoute.ROOM}/:id`}>
+          <Room
+            offers={offers}
+            reviews={reviews}
+          />
         </Route>
         <Route exact path={AppRoute.LOGIN}>
           <SignIn/>

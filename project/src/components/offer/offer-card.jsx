@@ -1,10 +1,12 @@
 // компонент «Карточка предложения»
 import React from 'react';
-import offerProp from './offer.prop'
-import PropTypes from "prop-types";
+import offerProp from './offer.prop';
+import PropTypes from 'prop-types';
+import {Link} from "react-router-dom";
+import {AppRoute} from "../../const";
 
 function OfferCard({offer}) {
-  const percentRating = offer.rating * 100 / 5;
+  const percentRating = Math.floor(offer.rating) * 100 / 5;
   return (
     <article className="cities__place-card place-card" id={offer.id}>
       {offer.isPremium && (
@@ -13,9 +15,9 @@ function OfferCard({offer}) {
         </div>
       )}
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="#">
+        <Link to={`${AppRoute.ROOM}/${offer.id}`} >
           <img className="place-card__image" src={offer.previewImage} width="260" height="200" alt="Place appearence"/>
-        </a>
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
@@ -37,7 +39,9 @@ function OfferCard({offer}) {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{offer.title}</a>
+          <Link to={`${AppRoute.ROOM}/${offer.id}`}>
+            {offer.title}
+          </Link>
         </h2>
         <p className="place-card__type">{offer.type}</p>
       </div>

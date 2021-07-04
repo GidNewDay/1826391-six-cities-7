@@ -1,10 +1,10 @@
 // компонент «Карточка избранного предложения»
 import React from 'react';
-import offerProp from '../room/offer.prop'
+import offerProp from '../offer/offer.prop'
 import PropTypes from "prop-types";
 
 function FavouriteCard({offer}) {
-  const percentRating = offer.rating * 100 / 5;
+  const percentRating = Math.floor(offer.rating) * 100 / 5;
   return (
       <article className="favorites__card place-card">
         <div className="favorites__image-wrapper place-card__image-wrapper">
