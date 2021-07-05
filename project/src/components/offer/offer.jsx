@@ -4,15 +4,20 @@ import PropTypes from "prop-types";
 import offerProp from "./offer.prop";
 import Header from "../main/header";
 import {useParams} from "react-router-dom";
+import OfferReviewForm from "./offer-review-form";
 
 function Room(props) {
   const {offers, reviews} = props;
   const {id} = useParams();
   let offer = offers.find(o => o.id == id);
-  let review = reviews.find(o => o.roomId == id) || '';
-  console.log(review);
   const offerPercentRating = Math.floor(offer.rating) * 100 / 5;
-  const reviewPercentRating = Math.floor(review.rating) * 100 / 5;
+
+  const reviewsArr = [];
+  reviews.map((review) => {
+    if (review.roomId == id) {
+      reviewsArr.push(review)
+    }
+  });
   return (
     <div className="page">
       <Header/>
@@ -21,7 +26,7 @@ function Room(props) {
         <section className="property">
           <div className="property__gallery-container container">
             <div className="property__gallery">
-              {offer.images.map((image, id) => (
+              {offer.images.map((image) => (
                 <div className="property__image-wrapper">
                   <img className="property__image" src={image} alt="Photo studio"/>
                 </div>
@@ -73,7 +78,7 @@ function Room(props) {
               <div className="property__inside">
                 <h2 className="property__inside-title">What&apos;s inside</h2>
                 <ul className="property__inside-list">
-                  {offer.goods.map((good, id) => (
+                  {offer.goods.map((good) => (
                     <li className="property__inside-item">
                       {good}
                     </li>
@@ -103,39 +108,42 @@ function Room(props) {
                   </p>
                 </div>
               </div>
-              {review && (
                 <section className="property__reviews reviews">
-                  <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">1</span></h2>
-                  <ul className="reviews__list">
-                    <li className="reviews__item">
-                      <div className="reviews__user user">
-                        <div className="reviews__avatar-wrapper user__avatar-wrapper">
-                          <img className="reviews__avatar user__avatar" src={review.reviewerImg} width="54" height="54"
-                               alt="Reviews avatar"/>
-                        </div>
-                        <span className="reviews__user-name">
+                  <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviewsArr.length}</span></h2>
+                  {reviewsArr && (
+                    <ul className="reviews__list">
+                      {reviewsArr.map((review) => (
+                        <li className="reviews__item">
+                          <div className="reviews__user user">
+                            <div className="reviews__avatar-wrapper user__avatar-wrapper">
+                              <img className="reviews__avatar user__avatar" src={review.reviewerImg} width="54" height="54"
+                                   alt="Reviews avatar"/>
+                            </div>
+                            <span className="reviews__user-name">
                         {review.reviewerName}
                       </span>
-                      </div>
-                      <div className="reviews__info">
-                        <div className="reviews__rating rating">
-                          <div className="reviews__stars rating__stars">
-                            <span style={{width: `${reviewPercentRating}%`}}></span>
-                            <span className="visually-hidden">Rating</span>
                           </div>
-                        </div>
-                        <p className="reviews__text">
-                          {review.description}
-                        </p>
-                        <time className="reviews__time" dateTime="2019-04-24">{review.date}</time>
-                      </div>
-                    </li>
-                  </ul>
+                          <div className="reviews__info">
+                            <div className="reviews__rating rating">
+                              <div className="reviews__stars rating__stars">
+                                <span style={{width: `${Math.floor(review.rating) * 100 / 5}%`}}></span>
+                                <span className="visually-hidden">Rating</span>
+                              </div>
+                            </div>
+                            <p className="reviews__text">
+                              {review.description}
+                            </p>
+                            <time className="reviews__time" dateTime="2019-04-24">{review.date}</time>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  <OfferReviewForm/>
                 </section>
-              )}
             </div>
           </div>
-          <section className="property__map map"></section>
+          <section className="property__map map"> </section>
         </section>
         <div className="container">
           <section className="near-places places">
@@ -196,7 +204,7 @@ function Room(props) {
                   </div>
                   <div className="place-card__rating rating">
                     <div className="place-card__stars rating__stars">
-                      <span style={{width: "80%"}}></span>
+                      <span style={{width: "80%"}}> </span>
                       <span className="visually-hidden">Rating</span>
                     </div>
                   </div>
@@ -222,7 +230,7 @@ function Room(props) {
                     </div>
                     <button className="place-card__bookmark-button button" type="button">
                       <svg className="place-card__bookmark-icon" width="18" height="19">
-                        <use xlinkHref="#icon-bookmark"></use>
+                        <use xlinkHref="#icon-bookmark"> </use>
                       </svg>
                       <span className="visually-hidden">To bookmarks</span>
                     </button>
