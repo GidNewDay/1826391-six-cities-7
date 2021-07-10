@@ -7,7 +7,7 @@ import Room from "../offer/offer";
 import SignIn from "../login/login";
 import Favourites from "../favourites/favourites";
 import NotFound from "../notfound/notfound";
-import offerProp from "../offer/offer.prop"
+import offerProp from "../offer/offer.prop";
 
 function App(props) {
   const {offers, reviews} = props;
