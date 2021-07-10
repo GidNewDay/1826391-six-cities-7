@@ -1,7 +1,9 @@
+const AVATAR_LINK = "https://i.pravatar.cc/80";
+
 const offers = [
   {
     id: 1,
-    title: "Beautiful & luxurious studio at great location",
+    title: "Canal View Prinsengracht",
     type: "Apartment",
     price: 120,
     bedrooms: 3,
@@ -9,21 +11,21 @@ const offers = [
     rating: 5,
     city: [{
       location: [{
-        latitude: 52.370216,
-        longitude: 4.895168,
+        latitude: 52.38333,
+        longitude: 4.9,
         zoom: 10
       }],
       name: "Amsterdam",
     }],
     location: {
-      latitude: 52.35514938496378,
-      longitude: 4.673877537499948,
+      latitude: 52.3909553943508,
+      longitude: 4.85309666406198,
       zoom: 8
     },
     description: "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.",
     goods: ["Heating", "Kitchen", "Cable TV", "Washing machine", "Coffee machine", "Dishwasher"],
     host: [{
-      avatarUrl: "img/avatar-angelina.jpg",
+      avatarUrl: `${AVATAR_LINK}`,
       id: 3,
       isPro: true,
       name: "Angelina"
@@ -43,21 +45,21 @@ const offers = [
     rating: 4.8,
     city: [{
       location: [{
-        latitude: 48.8566,
-        longitude: 2.3522,
+        latitude: 52.38333,
+        longitude: 4.9,
         zoom: 10
       }],
       name: "Amsterdam",
     }],
     location: {
-      latitude: 48.8566,
-      longitude: 2.3522,
+      latitude: 52.369553943508,
+      longitude: 4.85309666406198,
       zoom: 8
     },
     description: "An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.",
     goods: ["Heating", "Kitchen", "Cable TV", "Coffee machine", "Dishwasher"],
     host: [{
-      avatarUrl: "img/avatar-max.jpg",
+      avatarUrl: `${AVATAR_LINK}`,
       id: 3,
       isPro: true,
       name: "Max"
@@ -91,7 +93,7 @@ const offers = [
     description: "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Brussels.",
     goods: ["Heating", "Kitchen", "Cable TV", "Washing machine", "Dishwasher"],
     host: [{
-      avatarUrl: "img/avatar-angelina.jpg",
+      avatarUrl: `${AVATAR_LINK}`,
       id: 3,
       isPro: false,
       name: "Angelina"
@@ -125,7 +127,7 @@ const offers = [
     description: "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Hamburg.",
     goods: ["Heating", "Kitchen", "Cable TV", "Washing machine", "Dishwasher"],
     host: [{
-      avatarUrl: "img/avatar-max.jpg",
+      avatarUrl: `${AVATAR_LINK}`,
       id: 3,
       isPro: false,
       name: "Max"
@@ -134,6 +136,74 @@ const offers = [
     images: ["img/studio-01.jpg", "img/apartment-01.jpg", "img/apartment-03.jpg"],
     isFavorite: true,
     isPremium: true,
+  },
+  {
+    id: 5,
+    title: "Beautiful & luxurious studio at great location",
+    type: "Apartment",
+    price: 120,
+    bedrooms: 3,
+    maxAdults: 4,
+    rating: 5,
+    city: [{
+      location: [{
+        latitude: 52.38333,
+        longitude: 4.9,
+        zoom: 10
+      }],
+      name: "Amsterdam",
+    }],
+    location: {
+      latitude: 52.3909553943508,
+      longitude: 4.929309666406198,
+      zoom: 8
+    },
+    description: "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.",
+    goods: ["Heating", "Kitchen", "Cable TV", "Washing machine", "Coffee machine", "Dishwasher"],
+    host: [{
+      avatarUrl: `${AVATAR_LINK}`,
+      id: 3,
+      isPro: true,
+      name: "Angelina"
+    }],
+    previewImage: "img/apartment-small-03.jpg",
+    images: ["img/room.jpg", "img/studio-01.jpg", "img/apartment-01.jpg", "img/apartment-02.jpg","img/apartment-03.jpg","img/studio-01.jpg"],
+    isFavorite: true,
+    isPremium: true,
+  },
+  {
+    id: 6,
+    title: "Wood place",
+    type: "Private offer",
+    price: 80,
+    bedrooms: 3,
+    maxAdults: 4,
+    rating: 4.8,
+    city: [{
+      location: [{
+        latitude: 52.38333,
+        longitude: 4.9,
+        zoom: 10
+      }],
+      name: "Amsterdam",
+    }],
+    location: {
+      latitude: 52.3809553943508,
+      longitude: 4.939309666406198,
+      zoom: 8
+    },
+    description: "An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.",
+    goods: ["Heating", "Kitchen", "Cable TV", "Coffee machine", "Dishwasher"],
+    host: [{
+      avatarUrl: `${AVATAR_LINK}`,
+      id: 3,
+      isPro: true,
+      name: "Max"
+    }],
+    previewImage: "img/room-small.jpg",
+    images: ["img/apartment-02.jpg", "img/apartment-03.jpg", "img/studio-01.jpg"],
+    isFavorite: true,
+    isPremium: false,
   },
 ];
 

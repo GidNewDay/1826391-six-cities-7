@@ -1,11 +1,34 @@
 // компонент «Главная страница»
-import React from 'react';
+import React, {useState} from 'react';
 import OffersList from '../offer/offers-list';
 import PropTypes from "prop-types";
 import offerProp from "../offer/offer.prop";
 import Header from "./header";
+import Map from "../map/map";
 
 function Main({offers}) {
+  const CITY = {
+    title: 'Amsterdam',
+    latitude: 52.38333,
+    longitude: 4.9,
+    zoom: 12,
+  };
+  const offersAmsterdam = [];
+  offers.map((offer) => {
+    if (offer.city[0].name === 'Amsterdam') {
+      offersAmsterdam.push(offer);
+    }
+  });
+
+  console.log(offersAmsterdam);
+  const [activeCard, setActiveCard] = useState({});
+  const onCardHover = (cardTitle) => {
+    const currentCard = offersAmsterdam.find((point) =>
+      point.title === cardTitle
+    );
+    setActiveCard(currentCard);
+  }
+
   return (
     <div className="page page--gray page--main">
       <Header/>
@@ -52,7 +75,7 @@ function Main({offers}) {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">312 places to stay in Amsterdam</b>
+              <b className="places__found">{offersAmsterdam.length} places to stay in {CITY.title}</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex="0">
@@ -68,12 +91,19 @@ function Main({offers}) {
                   <li className="places__option" tabIndex="0">Top rated first</li>
                 </ul>
               </form>
-                <OffersList
-                  offers={offers}
-                />
+              <OffersList
+                offers={offersAmsterdam}
+                onCardHover={onCardHover}
+              />
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <section className="cities__map map">
+                <Map
+                  city={CITY}
+                  points={offersAmsterdam}
+                  activeCard={activeCard}
+                />
+              </section>
             </div>
           </div>
         </div>
