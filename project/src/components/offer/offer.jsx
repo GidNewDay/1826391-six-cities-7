@@ -5,6 +5,7 @@ import offerProp from "./offer.prop";
 import Header from "../main/header";
 import {useParams} from "react-router-dom";
 import OfferReviewForm from "./offer-review-form";
+import ReviewList from "../review/reviews-list";
 
 function Room(props) {
   const {offers, reviews} = props;
@@ -12,14 +13,9 @@ function Room(props) {
   let offer = offers.find(o => o.id == id);
   const offerPercentRating = Math.floor(offer.rating) * 100 / 5;
 
-  const reviewsArr = [];
-  reviews.map((review) => {
-    if (review.roomId == id) {
-      reviewsArr.push(review)
-    }
-  });
   return (
     <div className="page">
+
       <Header/>
 
       <main className="page__main page__main--property">
@@ -48,14 +44,14 @@ function Room(props) {
                   className={`property__bookmark-button button ${offer.isFavorite && 'property__bookmark-button--active'}`}
                   type="button">
                   <svg className="property__bookmark-icon" width="31" height="33">
-                    <use xlinkHref="#icon-bookmark"></use>
+                    <use xlinkHref="#icon-bookmark">&nbsp;</use>
                   </svg>
                   <span className="visually-hidden">{offer.isFavorite ? "In bookmarks" : "To bookmarks"}</span>
                 </button>
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
-                  <span style={{width: `${offerPercentRating}%`}}></span>
+                  <span style={{width: `${offerPercentRating}%`}}>&nbsp;</span>
                   <span className="visually-hidden">Rating</span>
                 </div>
                 <span className="property__rating-value rating__value">{offer.rating}</span>
@@ -109,42 +105,14 @@ function Room(props) {
                 </div>
               </div>
                 <section className="property__reviews reviews">
-                  <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviewsArr.length}</span></h2>
-                  {reviewsArr && (
-                    <ul className="reviews__list">
-                      {reviewsArr.map((review) => (
-                        <li className="reviews__item">
-                          <div className="reviews__user user">
-                            <div className="reviews__avatar-wrapper user__avatar-wrapper">
-                              <img className="reviews__avatar user__avatar" src={review.reviewerImg} width="54" height="54"
-                                   alt="Reviews avatar"/>
-                            </div>
-                            <span className="reviews__user-name">
-                        {review.reviewerName}
-                      </span>
-                          </div>
-                          <div className="reviews__info">
-                            <div className="reviews__rating rating">
-                              <div className="reviews__stars rating__stars">
-                                <span style={{width: `${Math.floor(review.rating) * 100 / 5}%`}}></span>
-                                <span className="visually-hidden">Rating</span>
-                              </div>
-                            </div>
-                            <p className="reviews__text">
-                              {review.description}
-                            </p>
-                            <time className="reviews__time" dateTime="2019-04-24">{review.date}</time>
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
+                  <ReviewList reviews={reviews}/>
                   <OfferReviewForm/>
                 </section>
             </div>
           </div>
           <section className="property__map map"> </section>
         </section>
+
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
@@ -164,14 +132,14 @@ function Room(props) {
                     <button className="place-card__bookmark-button place-card__bookmark-button--active button"
                             type="button">
                       <svg className="place-card__bookmark-icon" width="18" height="19">
-                        <use xlinkHref="#icon-bookmark"></use>
+                        <use xlinkHref="#icon-bookmark">&nbsp;</use>
                       </svg>
                       <span className="visually-hidden">In bookmarks</span>
                     </button>
                   </div>
                   <div className="place-card__rating rating">
                     <div className="place-card__stars rating__stars">
-                      <span style={{width: "80%"}}></span>
+                      <span style={{width: "80%"}}>&nbsp;</span>
                       <span className="visually-hidden">Rating</span>
                     </div>
                   </div>
@@ -197,7 +165,7 @@ function Room(props) {
                     </div>
                     <button className="place-card__bookmark-button button" type="button">
                       <svg className="place-card__bookmark-icon" width="18" height="19">
-                        <use xlinkHref="#icon-bookmark"></use>
+                        <use xlinkHref="#icon-bookmark">&nbsp;</use>
                       </svg>
                       <span className="visually-hidden">To bookmarks</span>
                     </button>
@@ -237,7 +205,7 @@ function Room(props) {
                   </div>
                   <div className="place-card__rating rating">
                     <div className="place-card__stars rating__stars">
-                      <span style={{width: "100%"}}></span>
+                      <span style={{width: "100%"}}>&nbsp;</span>
                       <span className="visually-hidden">Rating</span>
                     </div>
                   </div>
@@ -257,6 +225,9 @@ function Room(props) {
 
 Room.propTypes = {
   offers: PropTypes.arrayOf(
+    PropTypes.oneOfType([offerProp]).isRequired,
+  ),
+  reviews: PropTypes.arrayOf(
     PropTypes.oneOfType([offerProp]).isRequired,
   )
 };
