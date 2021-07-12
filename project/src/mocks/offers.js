@@ -47,7 +47,7 @@ const offers = [
       location: [{
         latitude: 52.38333,
         longitude: 4.9,
-        zoom: 10
+        zoom: 12
       }],
       name: "Amsterdam",
     }],
@@ -86,8 +86,8 @@ const offers = [
       name: "Brussels",
     }],
     location: {
-      latitude: 50.8503,
-      longitude: 4.3517,
+      latitude: 50.8565828,
+      longitude: 4.3628498,
       zoom: 8
     },
     description: "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Brussels.",
@@ -190,6 +190,40 @@ const offers = [
     location: {
       latitude: 52.3809553943508,
       longitude: 4.939309666406198,
+      zoom: 8
+    },
+    description: "An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.",
+    goods: ["Heating", "Kitchen", "Cable TV", "Coffee machine", "Dishwasher"],
+    host: [{
+      avatarUrl: `${AVATAR_LINK}`,
+      id: 3,
+      isPro: true,
+      name: "Max"
+    }],
+    previewImage: "img/room-small.jpg",
+    images: ["img/apartment-02.jpg", "img/apartment-03.jpg", "img/studio-01.jpg"],
+    isFavorite: true,
+    isPremium: false,
+  },
+  {
+    id: 7,
+    title: "Wood place",
+    type: "Private offer",
+    price: 80,
+    bedrooms: 3,
+    maxAdults: 4,
+    rating: 4.8,
+    city: [{
+      location: [{
+        latitude: 50.8503,
+        longitude: 4.3517,
+        zoom: 10
+      }],
+      name: "Brussels",
+    }],
+    location: {
+      latitude: 50.8565828,
+      longitude: 4.3628498,
       zoom: 8
     },
     description: "An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.",

@@ -10,7 +10,7 @@ function ReviewList(props) {
   const {id} = useParams();
   const reviewsArr = [];
   reviews.map((review) => {
-    if (review.roomId == id) {
+    if (review.roomId === parseInt(id)) {
       reviewsArr.push(review)
     }
   });

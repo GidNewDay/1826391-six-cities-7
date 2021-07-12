@@ -7,12 +7,14 @@ import Header from "./header";
 import Map from "../map/map";
 
 function Main({offers}) {
-  const CITY = {
-    title: 'Amsterdam',
-    latitude: 52.38333,
-    longitude: 4.9,
-    zoom: 12,
-  };
+  const CITY = [{
+    location: [{
+      latitude: 52.38333,
+      longitude: 4.9,
+      zoom: 11
+    }],
+    name: "Amsterdam",
+  }];
   const offersAmsterdam = [];
   offers.map((offer) => {
     if (offer.city[0].name === 'Amsterdam') {
@@ -20,7 +22,6 @@ function Main({offers}) {
     }
   });
 
-  console.log(offersAmsterdam);
   const [activeCard, setActiveCard] = useState({});
   const onCardHover = (cardTitle) => {
     const currentCard = offersAmsterdam.find((point) =>
@@ -81,7 +82,7 @@ function Main({offers}) {
                 <span className="places__sorting-type" tabIndex="0">
                   Popular
                   <svg className="places__sorting-arrow" width="7" height="4">
-                    <use xlinkHref="#icon-arrow-select"></use>
+                    <use xlinkHref="#icon-arrow-select"> </use>
                   </svg>
                 </span>
                 <ul className="places__options places__options--custom places__options--opened">
@@ -93,6 +94,7 @@ function Main({offers}) {
               </form>
               <OffersList
                 offers={offersAmsterdam}
+                listType={`cities__places-list tabs__content`}
                 onCardHover={onCardHover}
               />
             </section>
