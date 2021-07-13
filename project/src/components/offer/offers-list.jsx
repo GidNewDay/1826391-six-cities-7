@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 import offerProp from './offer.prop'
 import OfferCard from "./offer-card";
 
-function OffersList({offers, onCardHover}) {
+function OffersList({offers, listType, onCardHover}) {
   const cardHoverHandler = (evt) => {
     onCardHover(evt.title);
   };
 
   return (
-    <div className="cities__places-list places__list tabs__content">
+    <div className={`${listType} places__list`}>
       {offers.map((offer) => (
         <OfferCard
           offer={offer}
