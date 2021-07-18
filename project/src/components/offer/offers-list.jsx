@@ -1,8 +1,8 @@
 // компонент «Список предложений»
-import React from "react";
+import React from 'react';
 import PropTypes from 'prop-types';
-import offerProp from './offer.prop'
-import OfferCard from "./offer-card";
+import offerProp from './offer.prop';
+import OfferCard from './offer-card';
 
 function OffersList({offers, listType, onCardHover}) {
   const cardHoverHandler = (evt) => {
@@ -15,6 +15,7 @@ function OffersList({offers, listType, onCardHover}) {
         <OfferCard
           offer={offer}
           onMouseEnter={() => cardHoverHandler(offer)}
+          key={offer.id}
         />
       ))}
     </div>
@@ -26,6 +27,7 @@ OffersList.propTypes = {
     PropTypes.oneOfType([offerProp]).isRequired,
   ),
   onCardHover: PropTypes.func.isRequired,
+  listType: PropTypes.string.isRequired,
 };
 
 export default OffersList;

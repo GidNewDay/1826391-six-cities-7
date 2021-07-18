@@ -1,8 +1,10 @@
 // компонент «Карта»
 import React, {useRef, useEffect} from 'react';
+import offerProp from '../offer/offer.prop';
+import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import useMap from "../../hooks/useMap";
+import useMap from '../../hooks/useMap';
 
 function Map({city, points, activeCard}) {
   const mapRef = useRef(null);
@@ -26,11 +28,11 @@ function Map({city, points, activeCard}) {
         leaflet
           .marker({
             lat: point.location.latitude,
-            lng: point.location.longitude
+            lng: point.location.longitude,
           }, {
             icon: (point.title === activeCard.title)
               ? iconActive
-              : icon
+              : icon,
           })
           .addTo(map);
       });
@@ -45,5 +47,11 @@ function Map({city, points, activeCard}) {
     </div>
   );
 }
+
+Map.propTypes = {
+  city: PropTypes.arrayOf(offerProp).isRequired,
+  points: PropTypes.arrayOf(offerProp).isRequired,
+  activeCard: PropTypes.arrayOf(offerProp).isRequired,
+};
 
 export default Map;

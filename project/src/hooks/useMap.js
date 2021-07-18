@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import leaflet from 'leaflet';
 
 function useMap(mapRef, city) {
@@ -9,17 +9,17 @@ function useMap(mapRef, city) {
       const instance = leaflet.map(mapRef.current, {
         center: {
           lat: city[0].location[0].latitude,
-          lng: city[0].location[0].longitude
+          lng: city[0].location[0].longitude,
         },
-        zoom: city[0].location[0].zoom
+        zoom: city[0].location[0].zoom,
       });
 
       leaflet
         .tileLayer(
           'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
           {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-          }
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+          },
         )
         .addTo(instance);
 

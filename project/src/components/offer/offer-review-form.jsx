@@ -4,11 +4,10 @@ import React, {useState} from 'react';
 function OfferReviewForm() {
   const stars = [5,4,3,2,1];
   const [rating, setRating] = useState(0);
-  const [comment, setComment] = useState("");
+  const [comment, setComment] = useState('');
 
   function update(event) {
     setComment(event.target.value);
-    console.log(comment);
   }
 
   return (
@@ -23,7 +22,7 @@ function OfferReviewForm() {
               value={rating}
               id={`${star}-stars`}
               type="radio"
-              onChange={() => {setRating(star)}}
+              onChange={() => {setRating(star);}}
             />
             <label htmlFor={`${star}-stars`} className="reviews__rating-label form__rating-label" title="perfect">
               <svg className="form__star-image" width="37" height="33">

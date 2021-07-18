@@ -1,51 +1,47 @@
 // компонент «Карточка избранного предложения»
 import React from 'react';
-import offerProp from '../offer/offer.prop'
-import PropTypes from "prop-types";
+import offerProp from '../offer/offer.prop';
+import PropTypes from 'prop-types';
 
 function FavouriteCard({offer}) {
   const percentRating = Math.floor(offer.rating) * 100 / 5;
   return (
-      <article className="favorites__card place-card">
-        <div className="favorites__image-wrapper place-card__image-wrapper">
-          <a href="#">
-            <img className="place-card__image" src={offer.previewImage} width="150" height="110"
-                 alt="Place image"/>
-          </a>
-        </div>
-        <div className="favorites__card-info place-card__info">
-          <div className="place-card__price-wrapper">
-            <div className="place-card__price">
-              <b className="place-card__price-value">&euro;{offer.price}</b>
-              <span className="place-card__price-text">&#47;&nbsp;night</span>
-            </div>
-            <button className="place-card__bookmark-button place-card__bookmark-button--active button"
-                    type="button">
-              <svg className="place-card__bookmark-icon" width="18" height="19">
-                <use xlinkHref="#icon-bookmark"></use>
-              </svg>
-              <span className="visually-hidden">In bookmarks</span>
-            </button>
+    <article className="favorites__card place-card">
+      <div className="favorites__image-wrapper place-card__image-wrapper">
+        <a href="/">
+          <img className="place-card__image" src={offer.previewImage} width="150" height="110" alt="Place pic"/>
+        </a>
+      </div>
+      <div className="favorites__card-info place-card__info">
+        <div className="place-card__price-wrapper">
+          <div className="place-card__price">
+            <b className="place-card__price-value">&euro;{offer.price}</b>
+            <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <div className="place-card__rating rating">
-            <div className="place-card__stars rating__stars">
-              <span style={{width: `${percentRating}%`}}></span>
-              <span className="visually-hidden">Rating</span>
-            </div>
-          </div>
-          <h2 className="place-card__name">
-            <a href="#">{offer.title}</a>
-          </h2>
-          <p className="place-card__type">{offer.type}</p>
+          <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
+            <svg className="place-card__bookmark-icon" width="18" height="19">
+              <use xlinkHref="#icon-bookmark"> </use>
+            </svg>
+            <span className="visually-hidden">In bookmarks</span>
+          </button>
         </div>
-      </article>
+        <div className="place-card__rating rating">
+          <div className="place-card__stars rating__stars">
+            <span style={{width: `${percentRating}%`}}> </span>
+            <span className="visually-hidden">Rating</span>
+          </div>
+        </div>
+        <h2 className="place-card__name">
+          <a href="/">{offer.title}</a>
+        </h2>
+        <p className="place-card__type">{offer.type}</p>
+      </div>
+    </article>
   );
 }
 
 FavouriteCard.propTypes = {
-  offer: PropTypes.arrayOf(
-    PropTypes.oneOfType([offerProp]).isRequired,
-  )
+  offer: PropTypes.arrayOf(offerProp).isRequired,
 };
 
 export default FavouriteCard;

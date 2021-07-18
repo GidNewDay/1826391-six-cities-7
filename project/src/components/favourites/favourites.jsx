@@ -1,14 +1,14 @@
 // компонент «Избранное» («Favourites»)
 import React from 'react';
-import offerProp from '../offer/offer.prop'
-import PropTypes from "prop-types";
-import FavouriteCard from './favourite-card'
-import Header from "../main/header";
+import offerProp from '../offer/offer.prop';
+import PropTypes from 'prop-types';
+import FavouriteCard from './favourite-card';
+import Header from '../main/header';
 
 function Favourites({offers}) {
   const cities = [];
   offers.map((offer) => {
-    if (offer.isFavorite){
+    if (offer.isFavorite) {
       let city = cities.find((c) => c.name === offer.city[0].name);
       if (!city) {
         city = {
@@ -20,6 +20,7 @@ function Favourites({offers}) {
         city.offers.push(offer);
       }
     }
+    return true;
   });
   return (
     <div className="page">
@@ -31,22 +32,21 @@ function Favourites({offers}) {
             <h1 className="favorites__title">Saved listing</h1>
             <ul className="favorites__list">
               {cities.map((city) => (
-                  <li className="favorites__locations-items">
-                    <div className="favorites__locations locations locations--current">
-                      <div className="locations__item">
-                        <a className="locations__item-link" href="#">
-                          <span>{city.name}</span>
-                        </a>
-                      </div>
+                <li className="favorites__locations-items" key={city.name}>
+                  <div className="favorites__locations locations locations--current">
+                    <div className="locations__item">
+                      <a className="locations__item-link" href="/">
+                        <span>{city.name}</span>
+                      </a>
                     </div>
-                    <div className="favorites__places">
-                      {city.offers.map((offer) => (
-                        <FavouriteCard offer = {offer} />
-                      ))}
-                    </div>
-                  </li>
-                )
-              )}
+                  </div>
+                  <div className="favorites__places">
+                    {city.offers.map((offer) => (
+                      <FavouriteCard offer={offer} key={offer.id}/>
+                    ))}
+                  </div>
+                </li>),
+              )};
             </ul>
           </section>
         </div>
@@ -61,9 +61,7 @@ function Favourites({offers}) {
 }
 
 Favourites.propTypes = {
-  offers: PropTypes.arrayOf(
-    PropTypes.oneOfType([offerProp]).isRequired,
-  )
+  offers: PropTypes.arrayOf(offerProp).isRequired,
 };
 
 export default Favourites;

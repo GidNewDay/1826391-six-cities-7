@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from "../main/header";
+import Header from '../main/header';
 
 function SignIn() {
   return (
@@ -24,7 +24,7 @@ function SignIn() {
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <a className="locations__item-link" href="#">
+              <a className="locations__item-link" href="/">
                 <span>Amsterdam</span>
               </a>
             </div>

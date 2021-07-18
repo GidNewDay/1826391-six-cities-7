@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Switch, Route, BrowserRouter} from "react-router-dom";
-import {AppRoute} from "../../const";
+import {Switch, Route, BrowserRouter} from 'react-router-dom';
+import {AppRoute} from '../../const';
 import Main from '../main/main';
-import Room from "../offer/offer";
-import SignIn from "../login/login";
-import Favourites from "../favourites/favourites";
-import NotFound from "../notfound/notfound";
-import offerProp from "../offer/offer.prop";
+import Room from '../offer/offer';
+import SignIn from '../login/login';
+import Favourites from '../favourites/favourites';
+import NotFound from '../notfound/notfound';
+import offerProp from '../offer/offer.prop';
 
 function App(props) {
   const {offers, reviews} = props;
@@ -42,9 +42,8 @@ function App(props) {
 }
 
 App.propTypes = {
-  offers: PropTypes.arrayOf(
-    PropTypes.oneOfType([offerProp]).isRequired,
-  )
+  offers: PropTypes.arrayOf(offerProp).isRequired,
+  reviews: PropTypes.arrayOf(offerProp).isRequired,
 };
 
 export default App;

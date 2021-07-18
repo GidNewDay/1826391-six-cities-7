@@ -1,6 +1,6 @@
 import React from 'react';
-import {Link} from "react-router-dom";
-import Header from "../main/header";
+import {Link} from 'react-router-dom';
+import Header from '../main/header';
 
 function NotFound() {
   return (
