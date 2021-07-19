@@ -15,9 +15,7 @@ function App(props) {
     <BrowserRouter>
       <Switch>
         <Route exact path={AppRoute.ROOT}>
-          <Main
-            offers={offers}
-          />
+          <Main/>
         </Route>
         <Route exact path={`${AppRoute.ROOM}/:id`}>
           <Room

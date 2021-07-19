@@ -4,3 +4,5 @@ export const AppRoute = {
   FAVOURITES: '/favourites',
   ROOM: '/offer',
 };
+
+export const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
