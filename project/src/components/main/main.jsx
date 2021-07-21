@@ -8,15 +8,11 @@ import Map from '../map/map';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../store/action';
 import CitiesList from '../cities-list/cities-list';
-import {CITIES} from '../../const';
+import {CITIES, SortType} from '../../const';
+import OffersSort from '../offer/offers-sort';
 
 function Main(props) {
-  const {offers, activeCity, onChangeCity} = props;
-
-  function changeCity(evt, cityValue) {
-    evt.preventDefault();
-    onChangeCity(cityValue);
-  }
+  const {offers, activeCity, onChangeCity, sortVal} = props;
   const activeCityOffers = offers.filter((offer) => offer.city[0].name === activeCity);
   const cityData = activeCityOffers[0].city;
 
@@ -28,6 +24,24 @@ function Main(props) {
     setActiveCard(currentCard);
   };
 
+  function changeCity(evt, cityValue) {
+    evt.preventDefault();
+    onChangeCity(cityValue);
+  }
+
+  switch (sortVal){
+    case SortType.PRICE_LOW:
+      activeCityOffers.sort((a, b) => a.price - b.price);
+      break;
+    case SortType.PRICE_HIGH:
+      activeCityOffers.sort((a, b) => b.price - a.price);
+      break;
+    case SortType.TOP_RATED:
+      activeCityOffers.sort((a, b) => b.rating - a.rating);
+      break;
+    default:
+      activeCityOffers.sort((a, b) => a.id - b.id);
+  }
 
   return (
     <div className="page page--gray page--main">
@@ -49,21 +63,9 @@ function Main(props) {
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">{activeCityOffers.length} places to stay in {activeCity}</b>
-              <form className="places__sorting" action="#" method="get">
-                <span className="places__sorting-caption">Sort by</span>
-                <span className="places__sorting-type" tabIndex="0">
-                  Popular
-                  <svg className="places__sorting-arrow" width="7" height="4">
-                    <use xlinkHref="#icon-arrow-select"> </use>
-                  </svg>
-                </span>
-                <ul className="places__options places__options--custom places__options--opened">
-                  <li className="places__option places__option--active" tabIndex="0">Popular</li>
-                  <li className="places__option" tabIndex="0">Price: low to high</li>
-                  <li className="places__option" tabIndex="0">Price: high to low</li>
-                  <li className="places__option" tabIndex="0">Top rated first</li>
-                </ul>
-              </form>
+              <OffersSort
+                sortVal={sortVal}
+              />
               <OffersList
                 offers={activeCityOffers}
                 listType={'cities__places-list tabs__content'}
@@ -90,16 +92,18 @@ Main.propTypes = {
   offers: PropTypes.arrayOf(offerProp).isRequired,
   onChangeCity: PropTypes.func.isRequired,
   activeCity: PropTypes.number.isRequired,
+  sortVal: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   offers: state.offers,
   activeCity: state.activeCity,
+  sortVal: state.sortVal,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onChangeCity(id) {
-    dispatch(ActionCreator.changeCity(id));
+  onChangeCity(value) {
+    dispatch(ActionCreator.changeCity(value));
   },
 });
 
