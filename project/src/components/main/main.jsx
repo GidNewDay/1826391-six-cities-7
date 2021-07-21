@@ -1,34 +1,33 @@
 // компонент «Главная страница»
 import React, {useState} from 'react';
 import OffersList from '../offer/offers-list';
-import PropTypes from "prop-types";
-import offerProp from "../offer/offer.prop";
-import Header from "./header";
-import Map from "../map/map";
+import PropTypes from 'prop-types';
+import offerProp from '../offer/offer.prop';
+import Header from './header';
+import Map from '../map/map';
+import {connect} from 'react-redux';
+import {ActionCreator} from '../../store/action';
+import CitiesList from '../cities-list/cities-list';
+import {CITIES} from '../../const';
 
-function Main({offers}) {
-  const CITY = [{
-    location: [{
-      latitude: 52.38333,
-      longitude: 4.9,
-      zoom: 11
-    }],
-    name: "Amsterdam",
-  }];
-  const offersAmsterdam = [];
-  offers.map((offer) => {
-    if (offer.city[0].name === 'Amsterdam') {
-      offersAmsterdam.push(offer);
-    }
-  });
+function Main(props) {
+  const {offers, activeCity, onChangeCity} = props;
+
+  function changeCity(evt, cityValue) {
+    evt.preventDefault();
+    onChangeCity(cityValue);
+  }
+  const activeCityOffers = offers.filter((offer) => offer.city[0].name === activeCity);
+  const cityData = activeCityOffers[0].city;
 
   const [activeCard, setActiveCard] = useState({});
   const onCardHover = (cardTitle) => {
-    const currentCard = offersAmsterdam.find((point) =>
-      point.title === cardTitle
+    const currentCard = activeCityOffers.find((point) =>
+      point.title === cardTitle,
     );
     setActiveCard(currentCard);
-  }
+  };
+
 
   return (
     <div className="page page--gray page--main">
@@ -38,45 +37,18 @@ function Main({offers}) {
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
-            <ul className="locations__list tabs__list">
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Paris</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Cologne</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Brussels</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item tabs__item--active" href="#">
-                  <span>Amsterdam</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Hamburg</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Dusseldorf</span>
-                </a>
-              </li>
-            </ul>
+            <CitiesList
+              cities={CITIES}
+              activeCity={activeCity}
+              changeCity={changeCity}
+            />
           </section>
         </div>
         <div className="cities">
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offersAmsterdam.length} places to stay in {CITY.title}</b>
+              <b className="places__found">{activeCityOffers.length} places to stay in {activeCity}</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex="0">
@@ -93,16 +65,16 @@ function Main({offers}) {
                 </ul>
               </form>
               <OffersList
-                offers={offersAmsterdam}
-                listType={`cities__places-list tabs__content`}
+                offers={activeCityOffers}
+                listType={'cities__places-list tabs__content'}
                 onCardHover={onCardHover}
               />
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
                 <Map
-                  city={CITY}
-                  points={offersAmsterdam}
+                  city={cityData}
+                  points={activeCityOffers}
                   activeCard={activeCard}
                 />
               </section>
@@ -115,8 +87,21 @@ function Main({offers}) {
 }
 
 Main.propTypes = {
-  offers: PropTypes.arrayOf(
-    PropTypes.oneOfType([offerProp]).isRequired,
-  )
+  offers: PropTypes.arrayOf(offerProp).isRequired,
+  onChangeCity: PropTypes.func.isRequired,
+  activeCity: PropTypes.number.isRequired,
 };
-export default Main;
+
+const mapStateToProps = (state) => ({
+  offers: state.offers,
+  activeCity: state.activeCity,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onChangeCity(id) {
+    dispatch(ActionCreator.changeCity(id));
+  },
+});
+
+export {Main};
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

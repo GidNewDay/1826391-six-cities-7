@@ -1,7 +1,7 @@
 // компонент «Отзыв»
-import React from "react";
-import PropTypes from "prop-types";
-import offerProp from "../offer/offer.prop";
+import React from 'react';
+import PropTypes from 'prop-types';
+import offerProp from '../offer/offer.prop';
 
 function Review(props) {
   const {review} = props;
@@ -28,13 +28,11 @@ function Review(props) {
         <time className="reviews__time" dateTime="2019-04-24">{review.date}</time>
       </div>
     </li>
-  )
+  );
 }
 
 Review.propTypes = {
-  reviews: PropTypes.arrayOf(
-    PropTypes.oneOfType([offerProp]).isRequired,
-  )
+  review: PropTypes.arrayOf(offerProp).isRequired,
 };
 
 export default Review;
