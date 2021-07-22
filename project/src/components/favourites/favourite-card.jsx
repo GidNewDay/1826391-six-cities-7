@@ -8,7 +8,7 @@ function FavouriteCard({offer}) {
   return (
     <article className="favorites__card place-card">
       <div className="favorites__image-wrapper place-card__image-wrapper">
-        <a href="/">
+        <a href={`/offer/${offer.id}`}>
           <img className="place-card__image" src={offer.previewImage} width="150" height="110" alt="Place pic"/>
         </a>
       </div>
@@ -32,7 +32,7 @@ function FavouriteCard({offer}) {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="/">{offer.title}</a>
+          <a href={`/offer/${offer.id}`}>{offer.title}</a>
         </h2>
         <p className="place-card__type">{offer.type}</p>
       </div>

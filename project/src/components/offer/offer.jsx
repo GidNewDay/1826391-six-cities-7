@@ -8,6 +8,7 @@ import OfferReviewForm from './offer-review-form';
 import ReviewList from '../review/reviews-list';
 import OffersList from './offers-list';
 import Map from '../map/map';
+import {connect} from 'react-redux';
 
 function Room(props) {
   const {offers, reviews} = props;
@@ -146,4 +147,10 @@ Room.propTypes = {
   reviews: PropTypes.arrayOf(offerProp).isRequired,
 };
 
-export default Room;
+const mapStateToProps = (state) => ({
+  offers: state.offers,
+  reviews: state.offers,
+});
+
+export {Room};
+export default connect(mapStateToProps, null)(Room);
