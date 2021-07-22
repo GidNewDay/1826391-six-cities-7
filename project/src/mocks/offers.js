@@ -249,15 +249,15 @@ const offers = [
     rating: 4.8,
     city: [{
       location: [{
-        latitude: 48.8587,
-        longitude: 2.2069,
-        zoom: 10,
+        latitude: 48.8566,
+        longitude: 2.3,
+        zoom: 12,
       }],
       name: 'Paris',
     }],
     location: {
-      latitude: 48.8534536,
-      longitude: 2.2791788,
+      latitude: 48.858093,
+      longitude: 2.294694,
       zoom: 8,
     },
     description: 'An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.',
