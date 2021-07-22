@@ -18,7 +18,7 @@ function Room(props) {
   const CITY = offer.city;
   const nearOffers = [];
   offers.map((o) => {
-    if (o.city[0].name === offer.city[0].name && o.id !== parseInt(id, 10)) {
+    if (o.city.name === offer.city.name && o.id !== parseInt(id, 10)) {
       nearOffers.push(o);
     }
     return true;
@@ -100,13 +100,13 @@ function Room(props) {
               <div className="property__host">
                 <h2 className="property__host-title">Meet the host</h2>
                 <div className="property__host-user user">
-                  <div className={`property__avatar-wrapper ${offer.host[0].isPro && 'property__avatar-wrapper--pro'} user__avatar-wrapper`}>
-                    <img className="property__avatar user__avatar" src={offer.host[0].avatarUrl} width="74" height="74" alt="Host avatar"/>
+                  <div className={`property__avatar-wrapper ${offer.host.isPro && 'property__avatar-wrapper--pro'} user__avatar-wrapper`}>
+                    <img className="property__avatar user__avatar" src={offer.host.avatarUrl} width="74" height="74" alt="Host avatar"/>
                   </div>
                   <span className="property__user-name">
-                    {offer.host[0].name}
+                    {offer.host.name}
                   </span>
-                  {offer.host[0].isPro && (
+                  {offer.host.isPro && (
                     <span className="property__user-status">
                       Pro
                     </span>

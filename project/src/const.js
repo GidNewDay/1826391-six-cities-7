@@ -21,7 +21,7 @@ export const AuthorizationStatus = {
 };
 
 export const APIRoute = {
-  OFFERS: '/offers',
+  OFFERS: '/hotels',
   LOGIN: '/login',
   LOGOUT: '/logout',
 };

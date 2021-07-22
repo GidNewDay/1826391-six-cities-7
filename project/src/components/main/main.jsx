@@ -13,8 +13,9 @@ import OffersSort from '../offer/offers-sort';
 
 function Main(props) {
   const {offers, activeCity, onChangeCity, sortVal} = props;
-  const activeCityOffers = offers.filter((offer) => offer.city[0].name === activeCity);
+  const activeCityOffers = offers.filter((offer) => offer.city.name === activeCity);
   const cityData = activeCityOffers[0].city;
+  console.log(cityData);
 
   const [activeCard, setActiveCard] = useState({});
   const onCardHover = (cardTitle) => {

@@ -1,13 +1,28 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import {Switch, Route, BrowserRouter} from 'react-router-dom';
-import {AppRoute} from '../../const';
+import {AppRoute, AuthorizationStatus} from '../../const';
 import Main from '../main/main';
 import Room from '../offer/offer';
 import SignIn from '../login/login';
 import Favourites from '../favourites/favourites';
 import NotFound from '../notfound/notfound';
+import Loading from '../loading/loading';
 
-function App() {
+
+function App(props) {
+
+  const {authorizationStatus, isDataLoaded} = props;
+  const isCheckedAuth = (authStatus) => authStatus === AuthorizationStatus.UNKNOWN;
+
+
+  if (isCheckedAuth(authorizationStatus) || !isDataLoaded) {
+    return (
+      <Loading />
+    );
+  }
+
   return (
     <BrowserRouter>
       <Switch>
@@ -31,4 +46,15 @@ function App() {
   );
 }
 
-export default App;
+App.propTypes = {
+  authorizationStatus: PropTypes.string.isRequired,
+  isDataLoaded: PropTypes.bool.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  authorizationStatus: state.authorizationStatus,
+  isDataLoaded: state.isDataLoaded,
+});
+
+export {App};
+export default connect(mapStateToProps, null)(App);

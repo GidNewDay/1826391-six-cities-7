@@ -1,9 +1,10 @@
 import {ActionCreator} from './action';
 import {AuthorizationStatus, APIRoute} from '../const';
+import {formatJSON} from '../services/format-json';
 
 export const fetchOfferList = () => (dispatch, _getState, api) => (
   api.get(APIRoute.OFFERS)
-    .then(({data}) => dispatch(ActionCreator.loadOffers(data)))
+    .then(({data}) => dispatch(ActionCreator.loadOffers(formatJSON(data))))
 );
 
 export const checkAuth = () => (dispatch, _getState, api) => (

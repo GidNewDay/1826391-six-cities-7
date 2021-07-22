@@ -11,10 +11,10 @@ function Favourites(props) {
   const cities = [];
   offers.map((offer) => {
     if (offer.isFavorite) {
-      let city = cities.find((c) => c.name === offer.city[0].name);
+      let city = cities.find((c) => c.name === offer.city.name);
       if (!city) {
         city = {
-          name: offer.city[0].name,
+          name: offer.city.name,
           offers: [offer],
         };
         cities.push(city);
