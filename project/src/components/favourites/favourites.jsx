@@ -4,15 +4,17 @@ import offerProp from '../offer/offer.prop';
 import PropTypes from 'prop-types';
 import FavouriteCard from './favourite-card';
 import Header from '../main/header';
+import {connect} from 'react-redux';
 
-function Favourites({offers}) {
+function Favourites(props) {
+  const {offers} = props;
   const cities = [];
   offers.map((offer) => {
     if (offer.isFavorite) {
-      let city = cities.find((c) => c.name === offer.city[0].name);
+      let city = cities.find((c) => c.name === offer.city.name);
       if (!city) {
         city = {
-          name: offer.city[0].name,
+          name: offer.city.name,
           offers: [offer],
         };
         cities.push(city);
@@ -52,7 +54,7 @@ function Favourites({offers}) {
         </div>
       </main>
       <footer className="footer container">
-        <a className="footer__logo-link" href="main.html">
+        <a className="footer__logo-link" href="/">
           <img className="footer__logo" src="img/logo.svg" alt="6 cities logo" width="64" height="33"/>
         </a>
       </footer>
@@ -64,4 +66,9 @@ Favourites.propTypes = {
   offers: PropTypes.arrayOf(offerProp).isRequired,
 };
 
-export default Favourites;
+const mapStateToProps = (state) => ({
+  offers: state.offers,
+});
+
+export {Favourites};
+export default connect(mapStateToProps, null)(Favourites);

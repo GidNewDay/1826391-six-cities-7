@@ -1,16 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import {Switch, Route, BrowserRouter} from 'react-router-dom';
-import {AppRoute} from '../../const';
+import {AppRoute, AuthorizationStatus} from '../../const';
 import Main from '../main/main';
 import Room from '../offer/offer';
 import SignIn from '../login/login';
 import Favourites from '../favourites/favourites';
 import NotFound from '../notfound/notfound';
-import offerProp from '../offer/offer.prop';
+import Loading from '../loading/loading';
+
 
 function App(props) {
-  const {offers, reviews} = props;
+
+  const {authorizationStatus, isDataLoaded} = props;
+  const isCheckedAuth = (authStatus) => authStatus === AuthorizationStatus.UNKNOWN;
+
+
+  if (isCheckedAuth(authorizationStatus) || !isDataLoaded) {
+    return (
+      <Loading />
+    );
+  }
+
   return (
     <BrowserRouter>
       <Switch>
@@ -18,18 +30,13 @@ function App(props) {
           <Main/>
         </Route>
         <Route exact path={`${AppRoute.ROOM}/:id`}>
-          <Room
-            offers={offers}
-            reviews={reviews}
-          />
+          <Room/>
         </Route>
         <Route exact path={AppRoute.LOGIN}>
           <SignIn/>
         </Route>
         <Route exact path={AppRoute.FAVOURITES}>
-          <Favourites
-            offers={offers}
-          />
+          <Favourites/>
         </Route>
         <Route>
           <NotFound/>
@@ -40,8 +47,14 @@ function App(props) {
 }
 
 App.propTypes = {
-  offers: PropTypes.arrayOf(offerProp).isRequired,
-  reviews: PropTypes.arrayOf(offerProp).isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
+  isDataLoaded: PropTypes.bool.isRequired,
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  authorizationStatus: state.authorizationStatus,
+  isDataLoaded: state.isDataLoaded,
+});
+
+export {App};
+export default connect(mapStateToProps, null)(App);
