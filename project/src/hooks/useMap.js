@@ -4,7 +4,6 @@ import leaflet from 'leaflet';
 function useMap(mapRef, city) {
   const [map, setMap] = useState(null);
 
-  console.log(city);
   useEffect(() => {
     if (mapRef.current !== null && map === null) {
       const instance = leaflet.map(mapRef.current, {

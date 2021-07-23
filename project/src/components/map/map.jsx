@@ -10,19 +10,19 @@ function Map({city, points, activeCard}) {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
-  const icon = leaflet.icon({
-    iconUrl: 'img/pin.svg',
-    iconSize: [25, 35],
-    iconAnchor: [15, 30],
-  });
-
-  const iconActive = leaflet.icon({
-    iconUrl: 'img/pin-active.svg',
-    iconSize: [25, 35],
-    iconAnchor: [15, 30],
-  });
-
   useEffect(() => {
+    const icon = leaflet.icon({
+      iconUrl: 'img/pin.svg',
+      iconSize: [25, 35],
+      iconAnchor: [15, 30],
+    });
+
+    const iconActive = leaflet.icon({
+      iconUrl: 'img/pin-active.svg',
+      iconSize: [25, 35],
+      iconAnchor: [15, 30],
+    });
+
     if (map) {
       points.forEach((point) => {
         leaflet
