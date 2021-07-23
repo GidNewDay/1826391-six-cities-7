@@ -9,7 +9,7 @@ import SignIn from '../login/login';
 import Favourites from '../favourites/favourites';
 import NotFound from '../notfound/notfound';
 import Loading from '../loading/loading';
-
+import PrivateRoute from '../private-route/private-route';
 
 function App(props) {
 
@@ -35,9 +35,12 @@ function App(props) {
         <Route exact path={AppRoute.LOGIN}>
           <SignIn/>
         </Route>
-        <Route exact path={AppRoute.FAVOURITES}>
-          <Favourites/>
-        </Route>
+        <PrivateRoute
+          exact
+          path={AppRoute.FAVOURITES}
+          render={() => <Favourites/>}
+        >
+        </PrivateRoute>
         <Route>
           <NotFound/>
         </Route>
