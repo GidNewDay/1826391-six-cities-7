@@ -12,10 +12,8 @@ import Loading from '../loading/loading';
 import PrivateRoute from '../private-route/private-route';
 
 function App(props) {
-
   const {authorizationStatus, isDataLoaded} = props;
   const isCheckedAuth = (authStatus) => authStatus === AuthorizationStatus.UNKNOWN;
-
 
   if (isCheckedAuth(authorizationStatus) || !isDataLoaded) {
     return (
