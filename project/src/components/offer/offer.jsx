@@ -10,10 +10,10 @@ import OffersList from './offers-list';
 import Map from '../map/map';
 import {connect} from 'react-redux';
 import NotFound from '../notfound/notfound';
-import {fetchCommentList} from '../../store/api-actions';
+import {fetchCommentList, fetchNearbyList} from '../../store/api-actions';
 
 function Room(props) {
-  const {offers, comments, authorizationStatus, getComments} = props;
+  const {offers, authorizationStatus, comments,getComments, nearby, getNearbyOffers} = props;
   const {id} = useParams();
   const offer = offers.find((o) => o.id === parseInt(id, 10));//«Предложение» с текущим ID
   let offerPercentRating, CITY;
@@ -39,7 +39,8 @@ function Room(props) {
 
   useEffect(() => {
     getComments(id);
-  } );
+    getNearbyOffers(id);
+  },[id,getComments,getNearbyOffers] );
 
   return (
     offer === undefined
@@ -144,7 +145,7 @@ function Room(props) {
             <section className="near-places places">
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
 
-              <OffersList onCardHover={onCardHover} listType={'near-places__list'} offers={nearOffers}/>
+              <OffersList onCardHover={onCardHover} listType={'near-places__list'} offers={nearby}/>
 
             </section>
           </div>
@@ -155,20 +156,26 @@ function Room(props) {
 
 Room.propTypes = {
   offers: PropTypes.arrayOf(offerProp).isRequired,
-  comments: PropTypes.arrayOf(offerProp),
   authorizationStatus: PropTypes.string,
+  comments: PropTypes.arrayOf(offerProp),
   getComments: PropTypes.func,
+  nearby: PropTypes.arrayOf(offerProp),
+  getNearbyOffers: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
   offers: state.offers,
   comments: state.comments,
+  nearby: state.nearby,
   authorizationStatus: state.authorizationStatus,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   getComments(id) {
     dispatch(fetchCommentList(id));
+  },
+  getNearbyOffers(id) {
+    dispatch(fetchNearbyList(id));
   },
 });
 

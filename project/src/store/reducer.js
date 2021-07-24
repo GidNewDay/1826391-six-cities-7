@@ -5,6 +5,7 @@ const initialState = {
   activeCity: 'Paris',
   offers: [],
   comments: [],
+  nearby: [],
   sortVal: SortType.POPULAR,
   authorizationStatus: AuthorizationStatus.UNKNOWN,
   isDataLoaded: false,
@@ -27,16 +28,20 @@ const reducer = (state = initialState, action) => {
         ...state,
         sortVal: action.payload,
       };
-    case ActionType.LOAD_OFFERS:
+    case ActionType.LOAD_NEARBY_OFFERS:
       return {
         ...state,
-        offers: action.payload,
-        isDataLoaded: true,
+        nearby: action.payload,
       };
     case ActionType.LOAD_COMMENTS:
       return {
         ...state,
         comments: action.payload,
+      };
+    case ActionType.LOAD_OFFERS:
+      return {
+        ...state,
+        offers: action.payload,
         isDataLoaded: true,
       };
     case ActionType.REQUIRE_AUTHORIZATION:

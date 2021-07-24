@@ -4,6 +4,7 @@ export const ActionType = {
   SORT_OFFERS_LIST: 'main/sortOffersList',
   LOAD_OFFERS: 'data/loadOffers',
   LOAD_COMMENTS: 'data/loadComments',
+  LOAD_NEARBY_OFFERS: 'data/loadNearbyOffers',
   REQUIRE_AUTHORIZATION: 'user/requireAuthorization',
   LOGOUT: 'user/logout',
 };
@@ -20,6 +21,10 @@ export const ActionCreator = {
   loadOffers: (offers) => ({
     type: ActionType.LOAD_OFFERS,
     payload: offers,
+  }),
+  loadNearbyOffers: (nearby) => ({
+    type: ActionType.LOAD_NEARBY_OFFERS,
+    payload: nearby,
   }),
   loadComments: (comments) => ({
     type: ActionType.LOAD_COMMENTS,
