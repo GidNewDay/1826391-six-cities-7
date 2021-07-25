@@ -34,3 +34,7 @@ export const fetchNearbyList = (id) => (dispatch, _getState, api) => (
   api.get(`${APIRoute.OFFERS}/${id}/nearby`)
     .then(({data}) => dispatch(ActionCreator.loadNearbyOffers(formatJSON(data))))
 );
+
+export const postComment = (id, commentData) => (dispatch, _getState, api) => (
+  api.post(`${APIRoute.COMMENTS}/${id}`, commentData)
+);

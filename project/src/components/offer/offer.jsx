@@ -13,7 +13,7 @@ import NotFound from '../notfound/notfound';
 import {fetchCommentList, fetchNearbyList} from '../../store/api-actions';
 
 function Room(props) {
-  const {offers, authorizationStatus, comments,getComments, nearby, getNearbyOffers} = props;
+  const {offers, authorizationStatus, comments, getComments, nearby, getNearbyOffers} = props;
   const {id} = useParams();
   const offer = offers.find((o) => o.id === parseInt(id, 10));//«Предложение» с текущим ID
   let offerPercentRating, CITY;
@@ -40,7 +40,7 @@ function Room(props) {
   useEffect(() => {
     getComments(id);
     getNearbyOffers(id);
-  },[id,getComments,getNearbyOffers] );
+  }, [id, getComments, getNearbyOffers]);
 
   return (
     offer === undefined
@@ -141,14 +141,15 @@ function Room(props) {
               <Map city={CITY} points={nearOffers} activeCard={activeCard}/>
             </section>
           </section>
-          <div className="container">
-            <section className="near-places places">
-              <h2 className="near-places__title">Other places in the neighbourhood</h2>
-
-              <OffersList onCardHover={onCardHover} listType={'near-places__list'} offers={nearby}/>
-
-            </section>
-          </div>
+          {
+            nearby &&
+            <div className="container">
+              <section className="near-places places">
+                <h2 className="near-places__title">Other places in the neighbourhood</h2>
+                <OffersList onCardHover={onCardHover} listType={'near-places__list'} offers={nearby}/>
+              </section>
+            </div>
+          }
         </main>
       </div>
   );
