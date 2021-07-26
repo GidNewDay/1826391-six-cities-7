@@ -91,7 +91,7 @@ function Main(props) {
 Main.propTypes = {
   offers: PropTypes.arrayOf(offerProp).isRequired,
   onChangeCity: PropTypes.func.isRequired,
-  activeCity: PropTypes.number.isRequired,
+  activeCity: PropTypes.string.isRequired,
   sortVal: PropTypes.string.isRequired,
 };
 

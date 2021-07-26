@@ -21,7 +21,7 @@ function OfferCard(props) {
       )}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={`${AppRoute.ROOM}/${offer.id}`}>
-          <img className="place-card__image" src={offer.previewImage} width="260" height="200" alt="Place appearence"/>
+          <img className="place-card__image" src={offer.previewImage} width="260" height="200" alt="Place appearance"/>
         </Link>
       </div>
       <div className="place-card__info">

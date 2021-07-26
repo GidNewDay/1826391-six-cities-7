@@ -1,4 +1,4 @@
-//компонент «Login»
+//компонент «Login», страница авторизации
 import React, {useRef} from 'react';
 import Header from '../main/header';
 import {Link, Redirect} from 'react-router-dom';

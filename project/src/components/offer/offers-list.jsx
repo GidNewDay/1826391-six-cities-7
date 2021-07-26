@@ -23,9 +23,7 @@ function OffersList({offers, listType, onCardHover}) {
 }
 
 OffersList.propTypes = {
-  offers: PropTypes.arrayOf(
-    PropTypes.oneOfType([offerProp]).isRequired,
-  ),
+  offers: PropTypes.arrayOf(offerProp).isRequired,
   onCardHover: PropTypes.func.isRequired,
   listType: PropTypes.string.isRequired,
 };
