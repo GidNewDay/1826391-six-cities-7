@@ -2,17 +2,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import offerProp from '../offer/offer.prop';
+import {MONTH_NAMES} from '../../const';
 
 function Review(props) {
   const {review} = props;
+  const d=new Date(review.date);
+  const REVIEW_DATE = `${MONTH_NAMES[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
   return (
     <li className="reviews__item">
       <div className="reviews__user user">
         <div className="reviews__avatar-wrapper user__avatar-wrapper">
-          <img className="reviews__avatar user__avatar" src={review.reviewerImg} width="54" height="54" alt="Reviews avatar"/>
+          <img className="reviews__avatar user__avatar" src={review.user.avatarUrl} width="54" height="54" alt="Reviews avatar"/>
         </div>
         <span className="reviews__user-name">
-          {review.reviewerName}
+          {review.user.name}
         </span>
       </div>
       <div className="reviews__info">
@@ -23,9 +26,9 @@ function Review(props) {
           </div>
         </div>
         <p className="reviews__text">
-          {review.description}
+          {review.comment}
         </p>
-        <time className="reviews__time" dateTime="2019-04-24">{review.date}</time>
+        <time className="reviews__time" dateTime={review.date}>{REVIEW_DATE}</time>
       </div>
     </li>
   );

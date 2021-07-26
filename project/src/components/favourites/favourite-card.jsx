@@ -2,15 +2,16 @@
 import React from 'react';
 import offerProp from '../offer/offer.prop';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 
 function FavouriteCard({offer}) {
   const percentRating = Math.floor(offer.rating) * 100 / 5;
   return (
     <article className="favorites__card place-card">
       <div className="favorites__image-wrapper place-card__image-wrapper">
-        <a href={`/offer/${offer.id}`}>
+        <Link to={`/offer/${offer.id}`}>
           <img className="place-card__image" src={offer.previewImage} width="150" height="110" alt="Place pic"/>
-        </a>
+        </Link>
       </div>
       <div className="favorites__card-info place-card__info">
         <div className="place-card__price-wrapper">
