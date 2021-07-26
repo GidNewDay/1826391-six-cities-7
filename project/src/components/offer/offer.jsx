@@ -164,11 +164,11 @@ Room.propTypes = {
   getNearbyOffers: PropTypes.func,
 };
 
-const mapStateToProps = (state) => ({
-  offers: state.offers,
-  comments: state.comments,
-  nearby: state.nearby,
-  authorizationStatus: state.authorizationStatus,
+const mapStateToProps = ({DATA, USER}) => ({
+  offers: DATA.offers,
+  comments: DATA.comments,
+  nearby: DATA.nearby,
+  authorizationStatus: USER.authorizationStatus,
 });
 
 const mapDispatchToProps = (dispatch) => ({

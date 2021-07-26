@@ -1,4 +1,4 @@
-import {loadOffers, loadComments, requireAuthorization, logout as closeSession, loadNearbyOffers} from './action';
+import {loadOffers, loadComments, requiredAuthorization, logout as closeSession, loadNearbyOffers} from './action';
 import {AuthorizationStatus, APIRoute} from '../const';
 import {formatJSON} from '../services/format-json';
 
@@ -14,14 +14,14 @@ export const fetchCommentList = (id) => (dispatch, _getState, api) => (
 
 export const checkAuth = () => (dispatch, _getState, api) => (
   api.get(APIRoute.LOGIN)
-    .then(() => dispatch(requireAuthorization(AuthorizationStatus.AUTH)))
+    .then(() => dispatch(requiredAuthorization(AuthorizationStatus.AUTH)))
     .catch(() => {})
 );
 
 export const login = ({login: email, password}) => (dispatch, _getState, api) => (
   api.post(APIRoute.LOGIN, {email, password})
     .then(({data}) => localStorage.setItem('token', data.token))
-    .then(() => dispatch(requireAuthorization(AuthorizationStatus.AUTH)))
+    .then(() => dispatch(requiredAuthorization(AuthorizationStatus.AUTH)))
 );
 
 export const logout = () => (dispatch, _getState, api) => (

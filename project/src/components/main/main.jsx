@@ -95,10 +95,10 @@ Main.propTypes = {
   sortVal: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  offers: state.offers,
-  activeCity: state.activeCity,
-  sortVal: state.sortVal,
+const mapStateToProps = ({DATA, MAIN}) => ({
+  offers: DATA.offers,
+  activeCity: MAIN.activeCity,
+  sortVal: MAIN.sortVal,
 });
 
 const mapDispatchToProps = (dispatch) => ({

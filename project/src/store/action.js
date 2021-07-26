@@ -2,10 +2,10 @@ export const ActionType = {
   CHANGE_CITY: 'main/changeCity',
   FILL_OFFERS_LIST: 'main/fillOffersList',
   SORT_OFFERS_LIST: 'main/sortOffersList',
-  LOAD_OFFERS: 'data/loadOffers',
-  LOAD_COMMENTS: 'data/loadComments',
-  LOAD_NEARBY_OFFERS: 'data/loadNearbyOffers',
-  REQUIRE_AUTHORIZATION: 'user/requireAuthorization',
+  LOAD_OFFERS: 'reducer-data/loadOffers',
+  LOAD_COMMENTS: 'reducer-data/loadComments',
+  LOAD_NEARBY_OFFERS: 'reducer-data/loadNearbyOffers',
+  REQUIRED_AUTHORIZATION: 'user/requiredAuthorization',
   LOGOUT: 'user/logout',
 };
 
@@ -34,8 +34,8 @@ export const loadComments = (comments) => ({
   payload: comments,
 });
 
-export const requireAuthorization = (status) => ({
-  type: ActionType.REQUIRE_AUTHORIZATION,
+export const requiredAuthorization = (status) => ({
+  type: ActionType.REQUIRED_AUTHORIZATION,
   payload: status,
 });
 

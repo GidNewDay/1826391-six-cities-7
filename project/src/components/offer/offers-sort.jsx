@@ -40,8 +40,8 @@ OffersSort.propTypes = {
   onSortBy: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  sortVal: state.sortVal,
+const mapStateToProps = ({MAIN}) => ({
+  sortVal: MAIN.sortVal,
 });
 
 const mapDispatchToProps = (dispatch) => ({
