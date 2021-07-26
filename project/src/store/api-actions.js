@@ -1,38 +1,38 @@
-import {ActionCreator} from './action';
+import {loadOffers, loadComments, requireAuthorization, logout as closeSession, loadNearbyOffers} from './action';
 import {AuthorizationStatus, APIRoute} from '../const';
 import {formatJSON} from '../services/format-json';
 
 export const fetchOfferList = () => (dispatch, _getState, api) => (
   api.get(APIRoute.OFFERS)
-    .then(({data}) => dispatch(ActionCreator.loadOffers(formatJSON(data))))
+    .then(({data}) => dispatch(loadOffers(formatJSON(data))))
 );
 
 export const fetchCommentList = (id) => (dispatch, _getState, api) => (
   api.get(`${APIRoute.COMMENTS}/${id}`)
-    .then(({data}) => dispatch(ActionCreator.loadComments(formatJSON(data))))
+    .then(({data}) => dispatch(loadComments(formatJSON(data))))
 );
 
 export const checkAuth = () => (dispatch, _getState, api) => (
   api.get(APIRoute.LOGIN)
-    .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)))
+    .then(() => dispatch(requireAuthorization(AuthorizationStatus.AUTH)))
     .catch(() => {})
 );
 
 export const login = ({login: email, password}) => (dispatch, _getState, api) => (
   api.post(APIRoute.LOGIN, {email, password})
     .then(({data}) => localStorage.setItem('token', data.token))
-    .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)))
+    .then(() => dispatch(requireAuthorization(AuthorizationStatus.AUTH)))
 );
 
 export const logout = () => (dispatch, _getState, api) => (
   api.delete(APIRoute.LOGOUT)
     .then(() => localStorage.removeItem('token'))
-    .then(() => dispatch(ActionCreator.logout()))
+    .then(() => dispatch(closeSession()))
 );
 
 export const fetchNearbyList = (id) => (dispatch, _getState, api) => (
   api.get(`${APIRoute.OFFERS}/${id}/nearby`)
-    .then(({data}) => dispatch(ActionCreator.loadNearbyOffers(formatJSON(data))))
+    .then(({data}) => dispatch(loadNearbyOffers(formatJSON(data))))
 );
 
 export const postComment = (id, commentData) => (dispatch, _getState, api) => (

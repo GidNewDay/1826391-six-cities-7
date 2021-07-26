@@ -9,32 +9,36 @@ export const ActionType = {
   LOGOUT: 'user/logout',
 };
 
-export const ActionCreator = {
-  changeCity: (value) => ({
-    type: ActionType.CHANGE_CITY,
-    payload: value,
-  }),
-  sortBy: (value) => ({
-    type: ActionType.SORT_OFFERS_LIST,
-    payload: value,
-  }),
-  loadOffers: (offers) => ({
-    type: ActionType.LOAD_OFFERS,
-    payload: offers,
-  }),
-  loadNearbyOffers: (nearby) => ({
-    type: ActionType.LOAD_NEARBY_OFFERS,
-    payload: nearby,
-  }),
-  loadComments: (comments) => ({
-    type: ActionType.LOAD_COMMENTS,
-    payload: comments,
-  }),
-  requireAuthorization: (status) => ({
-    type: ActionType.REQUIRE_AUTHORIZATION,
-    payload: status,
-  }),
-  logout: () => ({
-    type: ActionType.LOGOUT,
-  }),
-};
+export const changeCity = (value) => ({
+  type: ActionType.CHANGE_CITY,
+  payload: value,
+});
+
+export const sortBy = (value) => ({
+  type: ActionType.SORT_OFFERS_LIST,
+  payload: value,
+});
+
+export const loadOffers = (offers) => ({
+  type: ActionType.LOAD_OFFERS,
+  payload: offers,
+});
+
+export const loadNearbyOffers = (nearby) => ({
+  type: ActionType.LOAD_NEARBY_OFFERS,
+  payload: nearby,
+});
+
+export const loadComments = (comments) => ({
+  type: ActionType.LOAD_COMMENTS,
+  payload: comments,
+});
+
+export const requireAuthorization = (status) => ({
+  type: ActionType.REQUIRE_AUTHORIZATION,
+  payload: status,
+});
+
+export const logout = () => ({
+  type: ActionType.LOGOUT,
+});

@@ -6,7 +6,7 @@ import offerProp from '../offer/offer.prop';
 import Header from './header';
 import Map from '../map/map';
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../store/action';
+import {changeCity} from '../../store/action';
 import CitiesList from '../cities-list/cities-list';
 import {CITIES, SortType} from '../../const';
 import OffersSort from '../offer/offers-sort';
@@ -103,7 +103,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onChangeCity(value) {
-    dispatch(ActionCreator.changeCity(value));
+    dispatch(changeCity(value));
   },
 });
 

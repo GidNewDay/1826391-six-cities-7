@@ -2,7 +2,7 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../store/action';
+import {sortBy} from '../../store/action';
 import {SortType} from '../../const';
 
 function OffersSort(props) {
@@ -46,7 +46,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onSortBy(value) {
-    dispatch(ActionCreator.sortBy(value));
+    dispatch(sortBy(value));
   },
 });
 
