@@ -11,6 +11,8 @@ import Favourites from '../favourites/favourites';
 import NotFound from '../notfound/notfound';
 import Loading from '../loading/loading';
 import PrivateRoute from '../private-route/private-route';
+import {getAuthorizationStatus} from '../../store/user/selector';
+import {getIsDataLoaded} from '../../store/data/selector';
 
 function App(props) {
   const {authorizationStatus, isDataLoaded} = props;
@@ -53,9 +55,9 @@ App.propTypes = {
   isDataLoaded: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = ({USER, DATA}) => ({
-  authorizationStatus: USER.authorizationStatus,
-  isDataLoaded: DATA.isDataLoaded,
+const mapStateToProps = (state) => ({
+  authorizationStatus: getAuthorizationStatus(state),
+  isDataLoaded: getIsDataLoaded(state),
 });
 
 export {App};

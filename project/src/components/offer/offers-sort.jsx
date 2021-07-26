@@ -2,8 +2,9 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {sortBy} from '../../store/action';
+import {sortOffersList} from '../../store/action';
 import {SortType} from '../../const';
+import {getSortVal} from '../../store/main-action/selector';
 
 function OffersSort(props) {
   const {sortVal, onSortBy} = props;
@@ -40,13 +41,13 @@ OffersSort.propTypes = {
   onSortBy: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({MAIN}) => ({
-  sortVal: MAIN.sortVal,
+const mapStateToProps = (state) => ({
+  sortVal: getSortVal(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onSortBy(value) {
-    dispatch(sortBy(value));
+    dispatch(sortOffersList(value));
   },
 });
 

@@ -11,9 +11,11 @@ import Map from '../map/map';
 import {connect} from 'react-redux';
 import NotFound from '../notfound/notfound';
 import {fetchCommentList, fetchNearbyList} from '../../store/api-actions';
+import {getComments, getNearbyOffers, getOffers} from '../../store/data/selector';
+import {getAuthorizationStatus} from '../../store/user/selector';
 
 function Room(props) {
-  const {offers, authorizationStatus, comments, getComments, nearby, getNearbyOffers} = props;
+  const {offers, authorizationStatus, comments, fetchComments, nearby, fetchNearby} = props;
   const {id} = useParams();
   const offer = offers.find((o) => o.id === parseInt(id, 10));//«Предложение» с текущим ID
   let offerPercentRating, CITY;
@@ -38,9 +40,9 @@ function Room(props) {
   };
 
   useEffect(() => {
-    getComments(id);
-    getNearbyOffers(id);
-  }, [id, getComments, getNearbyOffers]);
+    fetchComments(id);
+    fetchNearby(id);
+  }, [id, fetchComments, fetchNearby]);
 
   return (
     offer === undefined
@@ -159,23 +161,23 @@ Room.propTypes = {
   offers: PropTypes.arrayOf(offerProp).isRequired,
   authorizationStatus: PropTypes.string,
   comments: PropTypes.arrayOf(offerProp),
-  getComments: PropTypes.func,
+  fetchComments: PropTypes.func,
   nearby: PropTypes.arrayOf(offerProp),
-  getNearbyOffers: PropTypes.func,
+  fetchNearby: PropTypes.func,
 };
 
-const mapStateToProps = ({DATA, USER}) => ({
-  offers: DATA.offers,
-  comments: DATA.comments,
-  nearby: DATA.nearby,
-  authorizationStatus: USER.authorizationStatus,
+const mapStateToProps = (state) => ({
+  offers: getOffers(state),
+  comments: getComments(state),
+  nearby: getNearbyOffers(state),
+  authorizationStatus: getAuthorizationStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getComments(id) {
+  fetchComments(id) {
     dispatch(fetchCommentList(id));
   },
-  getNearbyOffers(id) {
+  fetchNearby(id) {
     dispatch(fetchNearbyList(id));
   },
 });

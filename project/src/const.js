@@ -2,7 +2,7 @@ export const AppRoute = {
   ROOT: '/',
   LOGIN: '/login',
   FAVOURITES: '/favourites',
-  ROOM: '/reducer-data',
+  ROOM: '/offers',
 };
 
 export const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];

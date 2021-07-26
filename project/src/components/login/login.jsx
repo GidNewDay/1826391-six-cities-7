@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {login} from '../../store/api-actions';
 import {AppRoute, AuthorizationStatus} from '../../const';
+import {getAuthorizationStatus} from '../../store/user/selector';
 
 function SignIn(props) {
   const {authorizationStatus, onSubmit} = props;
@@ -66,8 +67,8 @@ SignIn.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = ({USER}) => ({
-  authorizationStatus: USER.authorizationStatus,
+const mapStateToProps = (state) => ({
+  authorizationStatus: getAuthorizationStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

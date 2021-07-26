@@ -2,9 +2,9 @@ export const ActionType = {
   CHANGE_CITY: 'main/changeCity',
   FILL_OFFERS_LIST: 'main/fillOffersList',
   SORT_OFFERS_LIST: 'main/sortOffersList',
-  LOAD_OFFERS: 'reducer-data/loadOffers',
-  LOAD_COMMENTS: 'reducer-data/loadComments',
-  LOAD_NEARBY_OFFERS: 'reducer-data/loadNearbyOffers',
+  LOAD_OFFERS: 'data/loadOffers',
+  LOAD_COMMENTS: 'data/loadComments',
+  LOAD_NEARBY_OFFERS: 'data/loadNearbyOffers',
   REQUIRED_AUTHORIZATION: 'user/requiredAuthorization',
   LOGOUT: 'user/logout',
 };
@@ -14,7 +14,7 @@ export const changeCity = (value) => ({
   payload: value,
 });
 
-export const sortBy = (value) => ({
+export const sortOffersList = (value) => ({
   type: ActionType.SORT_OFFERS_LIST,
   payload: value,
 });

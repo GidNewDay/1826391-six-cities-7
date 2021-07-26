@@ -10,6 +10,8 @@ import {changeCity} from '../../store/action';
 import CitiesList from '../cities-list/cities-list';
 import {CITIES, SortType} from '../../const';
 import OffersSort from '../offer/offers-sort';
+import {getOffers} from '../../store/data/selector';
+import {getActiveCity, getSortVal} from '../../store/main-action/selector';
 
 function Main(props) {
   const {offers, activeCity, onChangeCity, sortVal} = props;
@@ -24,7 +26,7 @@ function Main(props) {
     setActiveCard(currentCard);
   };
 
-  function changeCity(evt, cityValue) {
+  function changeCityName(evt, cityValue) {
     evt.preventDefault();
     onChangeCity(cityValue);
   }
@@ -54,7 +56,7 @@ function Main(props) {
             <CitiesList
               cities={CITIES}
               activeCity={activeCity}
-              changeCity={changeCity}
+              changeCity={changeCityName}
             />
           </section>
         </div>
@@ -95,10 +97,10 @@ Main.propTypes = {
   sortVal: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = ({DATA, MAIN}) => ({
-  offers: DATA.offers,
-  activeCity: MAIN.activeCity,
-  sortVal: MAIN.sortVal,
+const mapStateToProps = (state) => ({
+  offers: getOffers(state),
+  activeCity: getActiveCity(state),
+  sortVal: getSortVal(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -1,6 +1,6 @@
 // Действия
 import {ActionType} from '../action';
-import {SortType} from "../../const";
+import {SortType} from '../../const';
 
 const initialState = {
   offers: [],

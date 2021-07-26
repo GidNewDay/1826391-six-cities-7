@@ -6,6 +6,7 @@ import FavouriteCard from './favourite-card';
 import Header from '../main/header';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
+import {getOffers} from '../../store/data/selector';
 
 function Favourites(props) {
   const {offers} = props;
@@ -80,8 +81,8 @@ Favourites.propTypes = {
   offers: PropTypes.arrayOf(offerProp).isRequired,
 };
 
-const mapStateToProps = ({DATA}) => ({
-  offers: DATA.offers,
+const mapStateToProps = (state) => ({
+  offers: getOffers(state),
 });
 
 export {Favourites};
