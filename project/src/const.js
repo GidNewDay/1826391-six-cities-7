@@ -5,7 +5,7 @@ export const AppRoute = {
   ROOM: '/offers',
 };
 
-export const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
+export const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf', 'Dushanbe'];
 
 export const SortType = {
   POPULAR: 'Popular',

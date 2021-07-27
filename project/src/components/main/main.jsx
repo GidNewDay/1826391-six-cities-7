@@ -10,6 +10,7 @@ import {CITIES, SortType} from '../../const';
 import OffersSort from '../offer/offers-sort';
 import {getOffers} from '../../store/data/selector';
 import {getActiveCity, getSortVal} from '../../store/main-action/selector';
+import MainEmpty from './main-empty';
 
 function Main() {
   const offers = useSelector(getOffers);
@@ -18,7 +19,7 @@ function Main() {
   const dispatch = useDispatch();
 
   const activeCityOffers = offers.filter((offer) => offer.city.name === activeCity);
-  const cityData = activeCityOffers[0].city;
+  const cityData = (activeCityOffers[0]) ? activeCityOffers[0].city : ''; //если есть оферы в текущем городе
 
   const [activeCard, setActiveCard] = useState({});
   const onCardHover = (cardTitle) => {
@@ -33,7 +34,7 @@ function Main() {
     dispatch(changeCity(cityValue));
   }
 
-  switch (sortVal){
+  switch (sortVal) {
     case SortType.PRICE_LOW:
       activeCityOffers.sort((a, b) => a.price - b.price);
       break;
@@ -51,7 +52,7 @@ function Main() {
     <div className="page page--gray page--main">
       <Header/>
 
-      <main className="page__main page__main--index">
+      <main className={`page__main page__main--index ${!cityData && 'page__main--index-empty'}`}>
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
@@ -63,6 +64,7 @@ function Main() {
           </section>
         </div>
         <div className="cities">
+          {cityData &&
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
@@ -85,7 +87,8 @@ function Main() {
                 />
               </section>
             </div>
-          </div>
+          </div>}
+          {!cityData && <MainEmpty/>}
         </div>
       </main>
     </div>
