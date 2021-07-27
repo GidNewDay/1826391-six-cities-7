@@ -1,11 +1,9 @@
 // компонент «Главная страница»
 import React, {useState} from 'react';
 import OffersList from '../offer/offers-list';
-import PropTypes from 'prop-types';
-import offerProp from '../offer/offer.prop';
 import Header from './header';
 import Map from '../map/map';
-import {connect} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {changeCity} from '../../store/action';
 import CitiesList from '../cities-list/cities-list';
 import {CITIES, SortType} from '../../const';
@@ -13,8 +11,12 @@ import OffersSort from '../offer/offers-sort';
 import {getOffers} from '../../store/data/selector';
 import {getActiveCity, getSortVal} from '../../store/main-action/selector';
 
-function Main(props) {
-  const {offers, activeCity, onChangeCity, sortVal} = props;
+function Main() {
+  const offers = useSelector(getOffers);
+  const activeCity = useSelector(getActiveCity);
+  const sortVal = useSelector(getSortVal);
+  const dispatch = useDispatch();
+
   const activeCityOffers = offers.filter((offer) => offer.city.name === activeCity);
   const cityData = activeCityOffers[0].city;
 
@@ -28,7 +30,7 @@ function Main(props) {
 
   function changeCityName(evt, cityValue) {
     evt.preventDefault();
-    onChangeCity(cityValue);
+    dispatch(changeCity(cityValue));
   }
 
   switch (sortVal){
@@ -90,24 +92,4 @@ function Main(props) {
   );
 }
 
-Main.propTypes = {
-  offers: PropTypes.arrayOf(offerProp).isRequired,
-  onChangeCity: PropTypes.func.isRequired,
-  activeCity: PropTypes.string.isRequired,
-  sortVal: PropTypes.string.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  offers: getOffers(state),
-  activeCity: getActiveCity(state),
-  sortVal: getSortVal(state),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onChangeCity(value) {
-    dispatch(changeCity(value));
-  },
-});
-
-export {Main};
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default Main;

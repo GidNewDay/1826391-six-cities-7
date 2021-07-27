@@ -1,20 +1,20 @@
 // компонент «Варианты сортировки»
 import React, {useState} from 'react';
-import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {sortOffersList} from '../../store/action';
 import {SortType} from '../../const';
 import {getSortVal} from '../../store/main-action/selector';
 
-function OffersSort(props) {
-  const {sortVal, onSortBy} = props;
+function OffersSort() {
+  const sortVal = useSelector(getSortVal);
+  const dispatch = useDispatch();
   const [isOpened, setOpenedSortList] = useState(false);
   const toggleDropList = () => {
     setOpenedSortList(!isOpened);
   };
 
   function sortBy(evt) {
-    onSortBy(evt.target.innerText);
+    dispatch(sortOffersList(evt.target.innerText));
     toggleDropList();
   }
 
@@ -36,20 +36,4 @@ function OffersSort(props) {
   );
 }
 
-OffersSort.propTypes = {
-  sortVal: PropTypes.string.isRequired,
-  onSortBy: PropTypes.func.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  sortVal: getSortVal(state),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onSortBy(value) {
-    dispatch(sortOffersList(value));
-  },
-});
-
-export {OffersSort};
-export default connect(mapStateToProps, mapDispatchToProps)(OffersSort);
+export default OffersSort;

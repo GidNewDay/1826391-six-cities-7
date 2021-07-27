@@ -1,5 +1,6 @@
 // Действия
-import {ActionType} from '../action';
+import {createReducer} from '@reduxjs/toolkit';
+import {fillOffersList, changeCity, sortOffersList} from '../action';
 import {SortType} from '../../const';
 
 const initialState = {
@@ -8,26 +9,17 @@ const initialState = {
   sortVal: SortType.POPULAR,
 };
 
-const mainAction = (state = initialState, action) => {
-  switch (action.type) {
-    case ActionType.FILL_OFFERS_LIST:
-      return {
-        ...state.city,
-        offers: action.payload,
-      };
-    case ActionType.CHANGE_CITY:
-      return {
-        ...state,
-        activeCity: action.payload,
-      };
-    case ActionType.SORT_OFFERS_LIST:
-      return {
-        ...state,
-        sortVal: action.payload,
-      };
-    default:
-      return state;
-  }
-};
+const mainAction = createReducer(initialState, (builder) => {
+  builder
+    .addCase(fillOffersList, (state, action) => {
+      state.offers = action.payload;
+    })
+    .addCase(changeCity, (state, action) => {
+      state.activeCity = action.payload;
+    })
+    .addCase(sortOffersList, (state, action) => {
+      state.sortVal = action.payload;
+    });
+});
 
 export {mainAction};

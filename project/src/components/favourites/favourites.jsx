@@ -1,15 +1,13 @@
 // компонент «Избранное» («Favourites»)
 import React from 'react';
-import offerProp from '../offer/offer.prop';
-import PropTypes from 'prop-types';
 import FavouriteCard from './favourite-card';
 import Header from '../main/header';
-import {connect} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {getOffers} from '../../store/data/selector';
 
-function Favourites(props) {
-  const {offers} = props;
+function Favourites() {
+  const offers = useSelector(getOffers);
   const cities = [];
   offers.map((offer) => {
     if (offer.isFavorite) {
@@ -77,13 +75,4 @@ function Favourites(props) {
   );
 }
 
-Favourites.propTypes = {
-  offers: PropTypes.arrayOf(offerProp).isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  offers: getOffers(state),
-});
-
-export {Favourites};
-export default connect(mapStateToProps, null)(Favourites);
+export default Favourites;

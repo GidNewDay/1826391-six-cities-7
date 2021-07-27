@@ -1,18 +1,18 @@
 // компонент "Шапка сайта"
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {connect} from 'react-redux';
-import PropTypes from 'prop-types';
+import {useSelector, useDispatch} from 'react-redux';
 import {AppRoute} from '../../const';
 import {logout} from '../../store/api-actions';
 import {getAuthorizationStatus} from '../../store/user/selector';
 
-function Header(props) {
-  const {authorizationStatus, onSignOut} = props;
+function Header() {
+  const authorizationStatus = useSelector(getAuthorizationStatus);
+  const dispatch = useDispatch();
 
   const signOut = (evt) => {
     evt.preventDefault();
-    onSignOut();
+    dispatch(logout());
   };
 
   return (
@@ -61,20 +61,4 @@ function Header(props) {
   );
 }
 
-Header.propTypes = {
-  authorizationStatus: PropTypes.string.isRequired,
-  onSignOut: PropTypes.func.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  authorizationStatus: getAuthorizationStatus(state),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onSignOut(){
-    dispatch(logout());
-  },
-});
-
-export {Header};
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default Header;

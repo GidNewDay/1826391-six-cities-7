@@ -1,11 +1,10 @@
 // компонент «Форма отправки комментария»
 import React, {useState} from 'react';
-import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {fetchCommentList, postComment} from '../../store/api-actions';
 import {useParams} from 'react-router-dom';
 
-function OfferReviewForm({ submitComment }) {
+function OfferReviewForm() {
   const {id} = useParams();
   const stars = [5,4,3,2,1];
   const grade = ['perfect', 'good', 'not bad', 'badly', 'terribly'];
@@ -25,9 +24,12 @@ function OfferReviewForm({ submitComment }) {
     setReview('');
   };
   const isValidForm = ({rating, comment}) => rating && comment.length;
+
+  const dispatch = useDispatch();
   const onSubmitComment = (evt) => {
     evt.preventDefault();
-    submitComment(id, commentData);
+    dispatch(postComment(id, commentData));
+    dispatch(fetchCommentList(id));
     clearForm();
   };
   return (
@@ -72,16 +74,4 @@ function OfferReviewForm({ submitComment }) {
   );
 }
 
-OfferReviewForm.propTypes = {
-  submitComment: PropTypes.func,
-};
-
-const mapDispatchToProps = (dispatch) => ({
-  submitComment(id, data) {
-    dispatch(postComment(id, data));
-    dispatch(fetchCommentList(id));
-  },
-});
-
-export {OfferReviewForm};
-export default connect(null, mapDispatchToProps)(OfferReviewForm);
+export default OfferReviewForm;

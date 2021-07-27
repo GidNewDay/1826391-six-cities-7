@@ -2,25 +2,26 @@
 import React, {useRef} from 'react';
 import Header from '../main/header';
 import {Link, Redirect} from 'react-router-dom';
-import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {login} from '../../store/api-actions';
 import {AppRoute, AuthorizationStatus} from '../../const';
 import {getAuthorizationStatus} from '../../store/user/selector';
 
-function SignIn(props) {
-  const {authorizationStatus, onSubmit} = props;
+function SignIn() {
   const loginRef = useRef();
   const passwordRef = useRef();
+  const dispatch = useDispatch();
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
-    onSubmit({
+    dispatch(login({
       login: loginRef.current.value,
       password: passwordRef.current.value,
-    });
+    }));
   };
+
+  const authorizationStatus = useSelector(getAuthorizationStatus);
 
   return (
     authorizationStatus === AuthorizationStatus.AUTH
@@ -62,20 +63,4 @@ function SignIn(props) {
   );
 }
 
-SignIn.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-  authorizationStatus: PropTypes.string.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  authorizationStatus: getAuthorizationStatus(state),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onSubmit(authData) {
-    dispatch(login(authData));
-  },
-});
-
-export {SignIn};
-export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
+export default SignIn;

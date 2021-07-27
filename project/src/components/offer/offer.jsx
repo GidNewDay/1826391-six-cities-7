@@ -1,25 +1,29 @@
 // страница «Room» с подробным описанием предложения по аренде
 import React, {useState, useEffect} from 'react';
-import PropTypes from 'prop-types';
-import offerProp from './offer.prop';
 import Header from '../main/header';
 import {useParams} from 'react-router-dom';
 import OfferReviewForm from './offer-review-form';
 import ReviewList from '../review/reviews-list';
 import OffersList from './offers-list';
 import Map from '../map/map';
-import {connect} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import NotFound from '../notfound/notfound';
 import {fetchCommentList, fetchNearbyList} from '../../store/api-actions';
 import {getComments, getNearbyOffers, getOffers} from '../../store/data/selector';
 import {getAuthorizationStatus} from '../../store/user/selector';
 
-function Room(props) {
-  const {offers, authorizationStatus, comments, fetchComments, nearby, fetchNearby} = props;
+function Room() {
+  const offers = useSelector(getOffers);
+  const authorizationStatus = useSelector(getAuthorizationStatus);
+  const comments = useSelector(getComments);
+  const nearby = useSelector(getNearbyOffers);
+  const dispatch = useDispatch();
+
   const {id} = useParams();
   const offer = offers.find((o) => o.id === parseInt(id, 10));//«Предложение» с текущим ID
   let offerPercentRating, CITY;
   const nearOffers = [];
+
   if (offer) {
     CITY = offer.city;
     offerPercentRating = Math.floor(offer.rating) * 100 / 5;
@@ -40,9 +44,9 @@ function Room(props) {
   };
 
   useEffect(() => {
-    fetchComments(id);
-    fetchNearby(id);
-  }, [id, fetchComments, fetchNearby]);
+    dispatch(fetchCommentList(id));
+    dispatch(fetchNearbyList(id));
+  }, [id, dispatch]);
 
   return (
     offer === undefined
@@ -157,30 +161,4 @@ function Room(props) {
   );
 }
 
-Room.propTypes = {
-  offers: PropTypes.arrayOf(offerProp).isRequired,
-  authorizationStatus: PropTypes.string,
-  comments: PropTypes.arrayOf(offerProp),
-  fetchComments: PropTypes.func,
-  nearby: PropTypes.arrayOf(offerProp),
-  fetchNearby: PropTypes.func,
-};
-
-const mapStateToProps = (state) => ({
-  offers: getOffers(state),
-  comments: getComments(state),
-  nearby: getNearbyOffers(state),
-  authorizationStatus: getAuthorizationStatus(state),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  fetchComments(id) {
-    dispatch(fetchCommentList(id));
-  },
-  fetchNearby(id) {
-    dispatch(fetchNearbyList(id));
-  },
-});
-
-export {Room};
-export default connect(mapStateToProps, mapDispatchToProps)(Room);
+export default Room;
