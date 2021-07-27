@@ -7,7 +7,7 @@ import {MONTH_NAMES} from '../../const';
 function Review(props) {
   const {review} = props;
   const d=new Date(review.date);
-  const REVIEW_DATE = `${MONTH_NAMES[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+  const REVIEW_DATE = `${MONTH_NAMES[d.getMonth()]} ${d.getFullYear()}`;
   return (
     <li className="reviews__item">
       <div className="reviews__user user">
