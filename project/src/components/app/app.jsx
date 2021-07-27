@@ -1,7 +1,6 @@
 // главный компонент App
 import React from 'react';
-import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {Switch, Route, BrowserRouter} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus} from '../../const';
 import Main from '../main/main';
@@ -14,8 +13,9 @@ import PrivateRoute from '../private-route/private-route';
 import {getAuthorizationStatus} from '../../store/user/selector';
 import {getIsDataLoaded} from '../../store/data/selector';
 
-function App(props) {
-  const {authorizationStatus, isDataLoaded} = props;
+function App() {
+  const authorizationStatus = useSelector(getAuthorizationStatus);
+  const isDataLoaded = useSelector(getIsDataLoaded);
   const isCheckedAuth = (authStatus) => authStatus === AuthorizationStatus.UNKNOWN;
 
   if (isCheckedAuth(authorizationStatus) || !isDataLoaded) {
@@ -50,15 +50,4 @@ function App(props) {
   );
 }
 
-App.propTypes = {
-  authorizationStatus: PropTypes.string.isRequired,
-  isDataLoaded: PropTypes.bool.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  authorizationStatus: getAuthorizationStatus(state),
-  isDataLoaded: getIsDataLoaded(state),
-});
-
-export {App};
-export default connect(mapStateToProps, null)(App);
+export default App;

@@ -1,6 +1,6 @@
 // страница «Room» с подробным описанием предложения по аренде
 import React, {useState, useEffect} from 'react';
-import Header from '../main/header';
+import Header from '../header/header';
 import {useParams} from 'react-router-dom';
 import OfferReviewForm from './offer-review-form';
 import ReviewList from '../review/reviews-list';

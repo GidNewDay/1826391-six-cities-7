@@ -1,7 +1,7 @@
 //страница 404
 import React from 'react';
 import {Link} from 'react-router-dom';
-import Header from '../main/header';
+import Header from '../header/header';
 
 function NotFound() {
   return (

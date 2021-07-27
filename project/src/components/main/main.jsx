@@ -1,7 +1,7 @@
 // компонент «Главная страница»
 import React, {useState} from 'react';
 import OffersList from '../offer/offers-list';
-import Header from './header';
+import Header from '../header/header';
 import Map from '../map/map';
 import {useSelector, useDispatch} from 'react-redux';
 import {changeCity} from '../../store/action';

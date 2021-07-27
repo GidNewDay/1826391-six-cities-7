@@ -1,6 +1,6 @@
 //компонент «Login», страница авторизации
 import React, {useRef} from 'react';
-import Header from '../main/header';
+import Header from '../header/header';
 import {Link, Redirect} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
 import {login} from '../../store/api-actions';
