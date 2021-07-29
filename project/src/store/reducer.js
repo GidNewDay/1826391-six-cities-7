@@ -6,6 +6,7 @@ const initialState = {
   offers: [],
   comments: [],
   nearby: [],
+  favorites: [],
   sortVal: SortType.POPULAR,
   authorizationStatus: AuthorizationStatus.UNKNOWN,
   isDataLoaded: false,
@@ -32,6 +33,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         nearby: action.payload,
+      };
+    case ActionType.LOAD_FAVORITE_DATA:
+      return {
+        ...state,
+        favorites: action.payload,
       };
     case ActionType.LOAD_COMMENTS:
       return {

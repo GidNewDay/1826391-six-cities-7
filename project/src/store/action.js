@@ -7,6 +7,7 @@ export const ActionType = {
   LOAD_OFFERS: 'data/loadOffers',
   LOAD_COMMENTS: 'data/loadComments',
   LOAD_NEARBY_OFFERS: 'data/loadNearbyOffers',
+  LOAD_FAVORITE_DATA: 'data/loadFavoriteData',
   REQUIRED_AUTHORIZATION: 'user/requiredAuthorization',
   LOGOUT: 'user/logout',
 };
@@ -37,6 +38,10 @@ export const loadComments = createAction(ActionType.LOAD_COMMENTS, (comments) =>
 
 export const requiredAuthorization = createAction(ActionType.REQUIRED_AUTHORIZATION, (status) => ({
   payload: status,
+}));
+
+export const loadFavoriteData = createAction(ActionType.LOAD_FAVORITE_DATA,(data) => ({
+  payload: data,
 }));
 
 export const logout = createAction(ActionType.LOGOUT);

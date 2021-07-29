@@ -1,12 +1,13 @@
 // Данные
 import {createReducer} from '@reduxjs/toolkit';
-import {loadOffers, loadNearbyOffers, loadComments} from '../action';
+import {loadOffers, loadNearbyOffers, loadComments, loadFavoriteData} from '../action';
 
 const initialState = {
   offers: [],
   isDataLoaded: false,
   nearby: [],
   comments: [],
+  favorites: [],
 };
 
 const data = createReducer(initialState, (builder) => {
@@ -17,6 +18,9 @@ const data = createReducer(initialState, (builder) => {
     })
     .addCase(loadNearbyOffers, (state, action) => {
       state.nearby = action.payload;
+    })
+    .addCase(loadFavoriteData, (state, action) => {
+      state.favorites = action.payload;
     })
     .addCase(loadComments, (state, action) => {
       state.comments = action.payload;

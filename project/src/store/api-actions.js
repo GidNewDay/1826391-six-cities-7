@@ -1,4 +1,4 @@
-import {loadOffers, loadComments, requiredAuthorization, logout as closeSession, loadNearbyOffers} from './action';
+import {loadOffers, loadComments, requiredAuthorization, logout as closeSession, loadNearbyOffers, loadFavoriteData} from './action';
 import {AuthorizationStatus, APIRoute} from '../const';
 import {formatJSON} from '../services/format-json';
 
@@ -37,4 +37,13 @@ export const fetchNearbyList = (id) => (dispatch, _getState, api) => (
 
 export const postComment = (id, commentData) => (dispatch, _getState, api) => (
   api.post(`${APIRoute.COMMENTS}/${id}`, commentData)
+);
+
+export const setFavorite = (id, status) => (dispatch, _getState, api) => (
+  api.post(`${APIRoute.FAVORITE}/${id}/${status}`)
+);
+
+export const fetchFavoritesList = () => (dispatch, _getState, api) => (
+  api.get(`${APIRoute.FAVORITE}`)
+    .then(({data}) => dispatch(loadFavoriteData(formatJSON(data))))
 );
