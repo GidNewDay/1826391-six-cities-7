@@ -5,6 +5,7 @@ import {useParams} from 'react-router-dom';
 import OfferReviewForm from './offer-review-form';
 import ReviewList from '../review/reviews-list';
 import OffersList from './offers-list';
+import OfferDetails from './offer-details';
 import Map from '../map/map';
 import {useSelector, useDispatch} from 'react-redux';
 import NotFound from '../notfound/notfound';
@@ -21,12 +22,12 @@ function Room() {
 
   const {id} = useParams();
   const offer = offers.find((o) => o.id === parseInt(id, 10));//«Предложение» с текущим ID
-  let offerPercentRating, CITY;
+  let CITY;
   const nearOffers = [];
 
   if (offer) {
     CITY = offer.city;
-    offerPercentRating = Math.floor(offer.rating) * 100 / 5;
+
     offers.map((o) => {
       if (o.city.name === offer.city.name && o.id !== parseInt(id, 10)) {
         nearOffers.push(o);
@@ -67,76 +68,9 @@ function Room() {
             </div>
             <div className="property__container container">
               <div className="property__wrapper">
-                {offer.isPremium && (
-                  <div className="property__mark">
-                    <span>Premium</span>
-                  </div>
-                )}
-                <div className="property__name-wrapper">
-                  <h1 className="property__name">
-                    {offer.title}
-                  </h1>
-                  <button
-                    className={`property__bookmark-button button ${offer.isFavorite && 'property__bookmark-button--active'}`}
-                    type="button"
-                  >
-                    <svg className="property__bookmark-icon" width="31" height="33">
-                      <use xlinkHref="#icon-bookmark">&nbsp;</use>
-                    </svg>
-                    <span className="visually-hidden">{offer.isFavorite ? 'In bookmarks' : 'To bookmarks'}</span>
-                  </button>
-                </div>
-                <div className="property__rating rating">
-                  <div className="property__stars rating__stars">
-                    <span style={{width: `${offerPercentRating}%`}}>&nbsp;</span>
-                    <span className="visually-hidden">Rating</span>
-                  </div>
-                  <span className="property__rating-value rating__value">{offer.rating}</span>
-                </div>
-                <ul className="property__features">
-                  <li className="property__feature property__feature--entire">
-                    {offer.type}
-                  </li>
-                  <li className="property__feature property__feature--bedrooms">
-                    {offer.bedrooms} Bedrooms
-                  </li>
-                  <li className="property__feature property__feature--adults">
-                    Max {offer.maxAdults} adults
-                  </li>
-                </ul>
-                <div className="property__price">
-                  <b className="property__price-value">&euro;{offer.price}</b>
-                  <span className="property__price-text">&nbsp;night</span>
-                </div>
-                <div className="property__inside">
-                  <h2 className="property__inside-title">What&apos;s inside</h2>
-                  <ul className="property__inside-list">
-                    {offer.goods.map((good) => (
-                      <li className="property__inside-item" key={good}>
-                        {good}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="property__host">
-                  <h2 className="property__host-title">Meet the host</h2>
-                  <div className="property__host-user user">
-                    <div className={`property__avatar-wrapper ${offer.host.isPro && 'property__avatar-wrapper--pro'} user__avatar-wrapper`}>
-                      <img className="property__avatar user__avatar" src={offer.host.avatarUrl} width="74" height="74" alt="Host avatar"/>
-                    </div>
-                    <span className="property__user-name">
-                      {offer.host.name}
-                    </span>
-                    {offer.host.isPro && (
-                      <span className="property__user-status">Pro</span>
-                    )}
-                  </div>
-                  <div className="property__description">
-                    <p className="property__text">
-                      {offer.description}
-                    </p>
-                  </div>
-                </div>
+                {/*Детали объявления*/}
+                <OfferDetails offer={offer}/>
+
                 <section className="property__reviews reviews">
                   <ReviewList reviews={comments}/>
                   {authorizationStatus === 'AUTH' && <OfferReviewForm/>}
@@ -144,6 +78,7 @@ function Room() {
               </div>
             </div>
             <section className="property__map map">
+              {/*Карта города с метками*/}
               <Map city={CITY} points={nearOffers} activeCard={activeCard}/>
             </section>
           </section>
