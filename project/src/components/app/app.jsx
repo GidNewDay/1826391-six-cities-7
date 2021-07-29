@@ -6,7 +6,7 @@ import {AppRoute, AuthorizationStatus} from '../../const';
 import Main from '../main/main';
 import Room from '../offer/offer';
 import SignIn from '../login/login';
-import Favourites from '../favourites/favourites';
+import Favorites from '../favorites/favorites';
 import NotFound from '../notfound/notfound';
 import Loading from '../loading/loading';
 import PrivateRoute from '../private-route/private-route';
@@ -38,8 +38,8 @@ function App() {
         </Route>
         <PrivateRoute
           exact
-          path={AppRoute.FAVOURITES}
-          render={() => <Favourites/>}
+          path={AppRoute.FAVORITES}
+          render={() => <Favorites/>}
         >
         </PrivateRoute>
         <Route>

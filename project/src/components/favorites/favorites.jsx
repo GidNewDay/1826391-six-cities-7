@@ -1,12 +1,12 @@
-// компонент «Избранное» («Favourites»)
+// компонент «Избранное» («Favorites»)
 import React from 'react';
-import FavouriteCard from './favourite-card';
+import FavoriteCard from './favorite-card';
 import Header from '../header/header';
 import {useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {getOffers} from '../../store/data/selector';
 
-function Favourites() {
+function Favorites() {
   const offers = useSelector(getOffers);
   const cities = [];
   offers.map((offer) => {
@@ -46,7 +46,7 @@ function Favourites() {
                     </div>
                     <div className="favorites__places">
                       {city.offers.map((offer) => (
-                        <FavouriteCard offer={offer} key={offer.id}/>
+                        <FavoriteCard offer={offer} key={offer.id}/>
                       ))}
                     </div>
                   </li>),
@@ -75,4 +75,4 @@ function Favourites() {
   );
 }
 
-export default Favourites;
+export default Favorites;

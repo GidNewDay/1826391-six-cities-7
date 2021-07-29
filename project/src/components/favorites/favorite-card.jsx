@@ -4,12 +4,12 @@ import offerProp from '../offer/offer.prop';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
-function FavouriteCard({offer}) {
+function FavoriteCard({offer}) {
   const percentRating = Math.floor(offer.rating) * 100 / 5;
   return (
     <article className="favorites__card place-card">
       <div className="favorites__image-wrapper place-card__image-wrapper">
-        <Link to={`/offer/${offer.id}`}>
+        <Link to={`/offers/${offer.id}`}>
           <img className="place-card__image" src={offer.previewImage} width="150" height="110" alt="Place pic"/>
         </Link>
       </div>
@@ -41,8 +41,8 @@ function FavouriteCard({offer}) {
   );
 }
 
-FavouriteCard.propTypes = {
+FavoriteCard.propTypes = {
   offer: PropTypes.arrayOf(offerProp).isRequired,
 };
 
-export default FavouriteCard;
+export default FavoriteCard;

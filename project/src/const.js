@@ -1,11 +1,11 @@
 export const AppRoute = {
   ROOT: '/',
   LOGIN: '/login',
-  FAVOURITES: '/favourites',
+  FAVORITES: '/favorites',
   ROOM: '/offers',
 };
 
-export const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf', 'Dushanbe'];
+export const CITIES = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
 
 export const SortType = {
   POPULAR: 'Popular',
