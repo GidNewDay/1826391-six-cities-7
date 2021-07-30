@@ -11,6 +11,8 @@ function OfferReviewForm() {
   const [rate, setRating] = useState(0);
   const [review, setReview] = useState('');
 
+  const MIN_LENGTH = 50;
+  const MAX_LENGTH = 300;
   function update(event) {
     setReview(event.target.value);
   }
@@ -23,7 +25,7 @@ function OfferReviewForm() {
     setRating(0);
     setReview('');
   };
-  const isValidForm = ({rating, comment}) => rating && comment.length;
+  const isValidForm = ({rating, comment}) => rating && comment.length >= MIN_LENGTH;
 
   const dispatch = useDispatch();
   const onSubmitComment = (evt) => {
@@ -62,6 +64,7 @@ function OfferReviewForm() {
         placeholder="Tell how was your stay, what you like and what can be improved"
         value={review}
         onChange={update}
+        maxLength={MAX_LENGTH}
       />
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
