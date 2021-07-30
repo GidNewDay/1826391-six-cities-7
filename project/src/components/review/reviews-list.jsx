@@ -6,9 +6,8 @@ import {getComments} from '../../store/data/selector';
 
 function ReviewList() {
   let reviews = useSelector(getComments);
-  reviews = reviews.slice().sort(function(a,b){
-    return new Date(b.date) - new Date(a.date);
-  });
+  reviews = reviews.slice().sort((a,b) => new Date(b.date) - new Date(a.date));
+
   return (
     <>
       <h2 className='reviews__title'>Reviews &middot; <span className='reviews__amount'>{reviews.length}</span></h2>

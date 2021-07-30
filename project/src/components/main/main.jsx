@@ -3,8 +3,7 @@ import React, {useState} from 'react';
 import OffersList from '../offer/offers-list';
 import Header from '../header/header';
 import Map from '../map/map';
-import {useSelector, useDispatch} from 'react-redux';
-import {changeCity} from '../../store/action';
+import {useSelector} from 'react-redux';
 import CitiesList from '../cities-list/cities-list';
 import {CITIES, SortType} from '../../const';
 import OffersSort from '../offer/offers-sort';
@@ -16,7 +15,6 @@ function Main() {
   const offers = useSelector(getOffers);
   const activeCity = useSelector(getActiveCity);
   const sortVal = useSelector(getSortVal);
-  const dispatch = useDispatch();
 
   const activeCityOffers = offers.filter((offer) => offer.city.name === activeCity);
   const cityData = (activeCityOffers[0]) ? activeCityOffers[0].city : ''; //если есть оферы в текущем городе
@@ -29,10 +27,6 @@ function Main() {
     setActiveCard(currentCard);
   };
 
-  function changeCityName(evt, cityValue) {
-    evt.preventDefault();
-    dispatch(changeCity(cityValue));
-  }
 
   switch (sortVal) {
     case SortType.PRICE_LOW:
@@ -59,7 +53,6 @@ function Main() {
             <CitiesList
               cities={CITIES}
               activeCity={activeCity}
-              changeCity={changeCityName}
             />
           </section>
         </div>
