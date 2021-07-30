@@ -9,6 +9,7 @@ export const ActionType = {
   LOAD_NEARBY_OFFERS: 'data/loadNearbyOffers',
   LOAD_FAVORITE_DATA: 'data/loadFavoriteData',
   REQUIRED_AUTHORIZATION: 'user/requiredAuthorization',
+  SET_USER_DATA: 'user/setUserData',
   LOGOUT: 'user/logout',
 };
 
@@ -41,6 +42,10 @@ export const requiredAuthorization = createAction(ActionType.REQUIRED_AUTHORIZAT
 }));
 
 export const loadFavoriteData = createAction(ActionType.LOAD_FAVORITE_DATA,(data) => ({
+  payload: data,
+}));
+
+export const setUserData = createAction(ActionType.SET_USER_DATA,(data) => ({
   payload: data,
 }));
 

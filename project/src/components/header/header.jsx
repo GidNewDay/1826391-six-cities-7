@@ -4,10 +4,11 @@ import {Link} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
 import {AppRoute} from '../../const';
 import {logout} from '../../store/api-actions';
-import {getAuthorizationStatus} from '../../store/user/selector';
+import {getAuthorizationStatus, getUserData} from '../../store/user/selector';
 
 function Header() {
   const authorizationStatus = useSelector(getAuthorizationStatus);
+  const userData = useSelector(getUserData);
   const dispatch = useDispatch();
 
   const signOut = (evt) => {
@@ -32,7 +33,7 @@ function Header() {
                   <Link className="header__nav-link header__nav-link--profile" to="/favorites">
                     <div className="header__avatar-wrapper user__avatar-wrapper">
                     </div>
-                    <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+                    <span className="header__user-name user__name">{userData.email}</span>
                   </Link>
                 </li>
                 <li className="header__nav-item">
