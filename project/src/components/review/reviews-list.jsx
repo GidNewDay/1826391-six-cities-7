@@ -1,12 +1,14 @@
 // компонент «Список отзывов»
 import React from 'react';
-import PropTypes from 'prop-types';
 import Review from './review';
-import offerProp from '../offer/offer.prop';
+import {useSelector} from 'react-redux';
+import {getComments} from '../../store/data/selector';
 
-function ReviewList(props) {
-  const {reviews} = props;
-
+function ReviewList() {
+  let reviews = useSelector(getComments);
+  reviews = reviews.slice().sort(function(a,b){
+    return new Date(b.date) - new Date(a.date);
+  });
   return (
     <>
       <h2 className='reviews__title'>Reviews &middot; <span className='reviews__amount'>{reviews.length}</span></h2>
@@ -20,9 +22,5 @@ function ReviewList(props) {
     </>
   );
 }
-
-ReviewList.propTypes = {
-  reviews: PropTypes.arrayOf(offerProp).isRequired,
-};
 
 export default ReviewList;
